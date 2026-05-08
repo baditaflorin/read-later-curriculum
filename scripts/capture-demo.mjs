@@ -2,9 +2,13 @@ import { spawn } from "node:child_process";
 import { createConnection } from "node:net";
 import { chromium } from "@playwright/test";
 
-const server = spawn(process.execPath, ["scripts/static-server.mjs", "docs", "4173"], {
-  stdio: ["ignore", "inherit", "inherit"],
-});
+const server = spawn(
+  process.execPath,
+  ["scripts/static-server.mjs", "docs", "4173"],
+  {
+    stdio: ["ignore", "inherit", "inherit"],
+  },
+);
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 40; attempt += 1) {
