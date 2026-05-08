@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Foundations of Attention",
+    "sourceUrl": "https://example.com/read-later/1",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["attention", "foundation"],
+    "content": "A primer on why saved articles become cognitive debt and how deliberate queues create calmer reading loops. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "What Makes a Good Reading Path?",
+    "sourceUrl": "https://example.com/read-later/2",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["curriculum", "foundation"],
+    "content": "An overview of prerequisites, review moments, and varied reading lengths for self-directed study. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Search Indexes for Personal Libraries",
+    "sourceUrl": "https://example.com/read-later/3",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["search", "synthesis"],
+    "content": "A practical guide to inverted indexes, ranking, and why local search keeps private libraries useful. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Semantic Embeddings in the Browser",
+    "sourceUrl": "https://example.com/read-later/4",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["embeddings", "synthesis"],
+    "content": "A compact explanation of sentence embeddings, cosine distance, and browser WASM tradeoffs. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Local LLM Summaries Without Leaking Notes",
+    "sourceUrl": "https://example.com/read-later/5",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["local-ai", "synthesis"],
+    "content": "A privacy-first look at summarization using local models and deterministic fallback synthesis. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Scheduling Reading Around Real Time",
+    "sourceUrl": "https://example.com/read-later/6",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["scheduling", "synthesis"],
+    "content": "How to convert open calendar blocks into sessions that mix short pieces with deeper essays. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Exporting Curricula with Markdown",
+    "sourceUrl": "https://example.com/read-later/7",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["pandoc", "synthesis"],
+    "content": "Why plain Markdown remains a durable bridge to PDFs, EPUBs, notes, and Pandoc workflows. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Avoiding the Read-Later Trap",
+    "sourceUrl": "https://example.com/read-later/8",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["workflow", "synthesis"],
+    "content": "A systems view of why capture tools fail when they do not synthesize, order, and schedule work. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Dependency Ordering for Articles",
+    "sourceUrl": "https://example.com/read-later/9",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["ordering", "synthesis"],
+    "content": "A simple model for placing primers before specialized critiques and case studies. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Clustering Topics From Messy Saves",
+    "sourceUrl": "https://example.com/read-later/10",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["clustering", "synthesis"],
+    "content": "How keyword signals and vector proximity can turn a chaotic inbox into topical shelves. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Offline-First Knowledge Tools",
+    "sourceUrl": "https://example.com/read-later/11",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["offline", "synthesis"],
+    "content": "A short guide to IndexedDB, service workers, and user-owned reading state in the browser. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  },
+  {
+    "title": "Measuring Whether Reading Happened",
+    "sourceUrl": "https://example.com/read-later/12",
+    "author": "Read Later Curriculum Demo",
+    "tags": ["metrics", "synthesis"],
+    "content": "Useful local measures for completion, stale queues, session load, and curriculum freshness. The article starts with the core concept, names the failure mode, and then gives a concrete practice that a reader can apply during the next session. It favors local-first software because private reading lists often include research, work notes, and unfinished thinking. The main takeaway is that saving is only useful when the system can cluster related items, identify prerequisites, balance reading effort, and reserve realistic time. A reader should finish with one sharper question and one next action."
+  }
+]
