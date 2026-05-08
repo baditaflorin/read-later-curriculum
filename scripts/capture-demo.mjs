@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { createConnection } from "node:net";
 import { chromium } from "@playwright/test";
 
 const server = spawn(process.execPath, ["scripts/static-server.mjs", "docs", "4173"], {
@@ -7,14 +8,22 @@ const server = spawn(process.execPath, ["scripts/static-server.mjs", "docs", "41
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 40; attempt += 1) {
-    try {
-      const response = await fetch("http://127.0.0.1:4173/read-later-curriculum/");
-      if (response.ok) {
-        return;
-      }
-    } catch {
-      await new Promise((resolve) => setTimeout(resolve, 200));
+    const ready = await new Promise((resolve) => {
+      const socket = createConnection(4173, "127.0.0.1");
+      socket.once("connect", () => {
+        socket.end();
+        resolve(true);
+      });
+      socket.once("error", () => resolve(false));
+      socket.setTimeout(200, () => {
+        socket.destroy();
+        resolve(false);
+      });
+    });
+    if (ready) {
+      return;
     }
+    await new Promise((resolve) => setTimeout(resolve, 200));
   }
   throw new Error("Timed out waiting for local Pages preview");
 }

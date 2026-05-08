@@ -1,4 +1,5 @@
 import { execSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
@@ -15,9 +16,18 @@ function gitValue(command: string, fallback: string) {
   }
 }
 
+function fileValue(path: string) {
+  return existsSync(path) ? readFileSync(path, "utf8").trim() : undefined;
+}
+
 const commit =
-  process.env.VITE_COMMIT_SHA ?? gitValue("git rev-parse --short HEAD", "dev");
-const builtAt = process.env.VITE_BUILT_AT ?? new Date().toISOString();
+  process.env.VITE_COMMIT_SHA ??
+  fileValue("BUILD_COMMIT") ??
+  gitValue("git rev-parse --short HEAD", "dev");
+const builtAt =
+  process.env.VITE_BUILT_AT ??
+  fileValue("BUILD_TIMESTAMP") ??
+  new Date().toISOString();
 
 // https://vite.dev/config/
 export default defineConfig({
