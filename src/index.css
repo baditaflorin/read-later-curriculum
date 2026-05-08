@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #fbfaf7;
+  --surface: #ffffff;
+  --ink: #171513;
+  --body: #4e4943;
+  --muted: #756f66;
+  --line: #e4ded5;
+  --line-strong: #c9c0b4;
+  --focus: #126b6f;
+  --focus-soft: rgba(18, 107, 111, 0.16);
+  --accent: #7a3f98;
+  --accent-soft: #f2e9f7;
+  --success: #2d7a46;
+  --success-soft: #edf8f0;
+  --danger: #b4443f;
+  --shadow: 0 18px 38px rgba(36, 30, 22, 0.14);
+  color: var(--ink);
+  background: var(--paper);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--focus-soft);
+}
