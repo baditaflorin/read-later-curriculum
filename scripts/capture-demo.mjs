@@ -2,9 +2,11 @@ import { spawn } from "node:child_process";
 import { createConnection } from "node:net";
 import { chromium } from "@playwright/test";
 
+const port = Number(process.env.SCREENSHOT_PORT ?? 4288);
+
 const server = spawn(
   process.execPath,
-  ["scripts/static-server.mjs", "docs", "4173"],
+  ["scripts/static-server.mjs", "docs", String(port)],
   {
     stdio: ["ignore", "inherit", "inherit"],
   },
@@ -13,7 +15,7 @@ const server = spawn(
 async function waitForServer() {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     const ready = await new Promise((resolve) => {
-      const socket = createConnection(4173, "127.0.0.1");
+      const socket = createConnection(port, "127.0.0.1");
       socket.once("connect", () => {
         socket.end();
         resolve(true);
@@ -39,7 +41,7 @@ try {
     viewport: { width: 1440, height: 1100 },
     deviceScaleFactor: 1,
   });
-  await page.goto("http://127.0.0.1:4173/read-later-curriculum/", {
+  await page.goto(`http://127.0.0.1:${port}/read-later-curriculum/`, {
     waitUntil: "domcontentloaded",
   });
   await page.getByRole("heading", { name: "Read Later Curriculum" }).waitFor();

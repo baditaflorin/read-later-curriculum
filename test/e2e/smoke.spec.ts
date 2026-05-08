@@ -8,7 +8,7 @@ test("builds a local curriculum from the demo set", async ({ page }) => {
     }
   });
 
-  await page.goto("/");
+  await page.goto("./");
   await expect(
     page.getByRole("heading", { name: "Read Later Curriculum" }),
   ).toBeVisible();
