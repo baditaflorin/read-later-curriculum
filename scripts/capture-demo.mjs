@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import { chromium } from "@playwright/test";
 
 const server = spawn(process.execPath, ["scripts/static-server.mjs", "docs", "4173"], {
-  stdio: ["ignore", "ignore", "inherit"],
+  stdio: ["ignore", "inherit", "inherit"],
 });
 
 async function waitForServer() {
@@ -26,8 +26,11 @@ try {
     viewport: { width: 1440, height: 1100 },
     deviceScaleFactor: 1,
   });
-  await page.goto("http://127.0.0.1:4173/read-later-curriculum/");
-  await page.getByRole("button", { name: "Demo Set" }).click();
+  await page.goto("http://127.0.0.1:4173/read-later-curriculum/", {
+    waitUntil: "domcontentloaded",
+  });
+  await page.getByRole("heading", { name: "Read Later Curriculum" }).waitFor();
+  await page.getByRole("button", { name: /Demo Set/ }).click();
   await page.getByRole("button", { name: "Build" }).click();
   await page.getByText("Curriculum generated.").waitFor({ timeout: 15_000 });
   await page.screenshot({ path: "docs/demo-screenshot.png", fullPage: false });
