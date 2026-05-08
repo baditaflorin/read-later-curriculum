@@ -1,0 +1,53 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS and editor noise
+.DS_Store
+.AppleDouble
+.LSOverride
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependencies and build caches
+node_modules
+dist
+dist-ssr
+tmp
+coverage
+playwright-report
+test-results
+.vite
+.turbo
+.cache
+*.local
+.env
+.env.*
+!.env.example
+
+# Secrets and key material
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Go build output, in case Mode B/C tooling is added later
+bin/
+vendor/
+*.test
+*.out
+
+# Do not ignore docs/. GitHub Pages serves the built app from main/docs.
