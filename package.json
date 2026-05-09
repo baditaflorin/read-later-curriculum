@@ -1,7 +1,7 @@
 {
   "name": "read-later-curriculum",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A local-first read-later app that turns saved articles into a dependency-ordered reading curriculum.",
   "license": "MIT",
   "type": "module",
