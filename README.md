@@ -6,7 +6,7 @@ Repository: https://github.com/baditaflorin/read-later-curriculum
 
 Support: https://www.paypal.com/paypalme/florinbadita
 
-![Version](https://img.shields.io/badge/version-0.2.0-126b6f)
+![Version](https://img.shields.io/badge/version-0.3.0-126b6f)
 ![Deployment](https://img.shields.io/badge/deployment-GitHub%20Pages-7a3f98)
 ![License](https://img.shields.io/badge/license-MIT-171513)
 
@@ -26,22 +26,41 @@ make pages-preview
 make smoke
 ```
 
+Canonical user loop:
+
+1. Import your own files, drag a batch onto the page, or paste article text/HTML.
+2. Click `Build` to generate the curriculum.
+3. Export `Markdown`, `Plan JSON`, or `State JSON`.
+4. Reopen later by importing `State JSON` or, for small workspaces, using `Share URL`.
+
 ## What Works
 
-- Add pasted article text or import `.txt`, `.md`, `.html`, read-later `.csv`,
-  RSS/Atom `.xml`, and compatible `.json` exports.
+- Add pasted article text/HTML, read from the clipboard, drag/drop files, or
+  import `.txt`, `.md`, `.html`, read-later `.csv`, RSS/Atom `.xml`, and
+  compatible `.json` exports.
 - Detect common real-world input shapes, show confidence/warnings, and reject
   unsupported PDFs or empty files with actionable recovery text.
-- Store articles, reading state, settings, and generated plans in IndexedDB.
+- Store articles, settings, generated plans, manual draft fields, paste buffer,
+  and query state in IndexedDB.
 - Search locally with FlexSearch.
 - Build topic clusters with fast local embeddings or lazy browser
   sentence-transformers.
 - Dependency-order topics, mix short and long reads, and schedule sessions into
   free-time slots.
-- Export curriculum JSON and Pandoc-ready Markdown with provenance, version,
-  commit, confidence, and parser metadata.
+- Export plan JSON, full workspace state JSON, and Pandoc-ready Markdown with
+  provenance, version, commit, confidence, and parser metadata.
+- Restore a whole workspace from state JSON and share smaller snapshots by URL.
+- Print a clean reading-plan view from the browser.
 - Show live version and commit in the GitHub Pages UI.
 - Inspect import decisions with `?debug=1`.
+
+## Limitations
+
+- Direct URL fetching is intentionally out of scope in Mode A. Paste content or
+  import exported files instead.
+- Large workspaces do not fit in share URLs and should use `State JSON`.
+- The app tracks article status and session continuity, not deep per-paragraph
+  reading analytics.
 
 ## Architecture
 

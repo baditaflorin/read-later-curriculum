@@ -7,8 +7,8 @@ Accepted
 ## Decision
 
 README claims must map to a tested production behavior. If a capability is
- partial, the docs should say so plainly in a limitations section rather than
- implying completion.
+partial, the docs should say so plainly in a limitations section rather than
+implying completion.
 
 ## Consequences
 

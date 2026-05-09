@@ -14,4 +14,4 @@ External data sources must cross a schema boundary before use:
 - clipboard/paste raw import where the type is ambiguous
 
 Unsafe casts in the UI should be replaced with typed parsers or constrained
- helper functions.
+helper functions.

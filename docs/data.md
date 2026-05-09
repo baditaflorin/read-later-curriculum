@@ -9,7 +9,8 @@ Sample artifacts:
 
 User export:
 
-- `read-later-curriculum-v1.json`
+- `read-later-curriculum-plan-v1.json`
+- `read-later-curriculum-state-v1.json`
 - `curriculum.md`
 
 ## Article
@@ -79,9 +80,38 @@ interface CurriculumPlan {
 }
 ```
 
+## Full App State Export
+
+```ts
+interface AppStateExport {
+  kind: "read-later-curriculum-state";
+  schemaVersion: "v1";
+  appVersion: string;
+  commit: string;
+  exportedAt: string;
+  settings: UserSettings;
+  plan: CurriculumPlan | null;
+  uiState: {
+    query: string;
+    pastedContent: string;
+    pastedFilename: string;
+    manualDraft: {
+      title: string;
+      sourceUrl: string;
+      tags: string;
+      content: string;
+    };
+  };
+  articles: Article[];
+}
+```
+
+State exports are the reopenable artifact. They are accepted by the dedicated
+state import control and by paste import when the payload is text-safe.
+
 ## User Export Provenance
 
-JSON and Markdown exports include:
+Plan JSON, state JSON, and Markdown exports include:
 
 - app name
 - app version

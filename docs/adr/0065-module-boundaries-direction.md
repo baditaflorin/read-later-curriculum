@@ -9,10 +9,10 @@ Accepted
 Keep dependency direction as:
 
 `App` UI -> feature workflows -> storage/import/export helpers -> shared
- primitives.
+primitives.
 
 App-state and import workflows should move out of `App.tsx`, but storage remains
- a feature-level concern because this is still a small Mode A app.
+a feature-level concern because this is still a small Mode A app.
 
 ## Consequences
 

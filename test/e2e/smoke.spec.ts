@@ -63,7 +63,7 @@ test("builds and restores a local workspace from state export", async ({
     page.getByText("Workspace restored from state export."),
   ).toBeVisible();
   await expect(page.getByText("Next")).toBeVisible();
-  await expect(page.locator("footer").getByText("v0.2.0")).toBeVisible();
+  await expect(page.locator("footer").getByText("v0.3.0")).toBeVisible();
   expect(consoleErrors).toEqual([]);
 });
 

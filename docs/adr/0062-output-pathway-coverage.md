@@ -7,7 +7,7 @@ Accepted
 ## Context
 
 The app could export a generated plan, but not the workspace required to resume
- work later.
+work later.
 
 ## Decision
 
@@ -17,7 +17,7 @@ Treat outputs as two separate classes:
 2. Reopenable state outputs: full app-state JSON and small share URLs.
 
 Plan JSON alone is not enough for continuity and should not be the only machine
- export.
+export.
 
 ## Consequences
 

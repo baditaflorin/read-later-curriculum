@@ -7,8 +7,8 @@ Accepted
 ## Decision
 
 Introduce a versioned app-state schema and move persisted UI/session state into
- IndexedDB alongside articles, plans, and settings. Dexie schema upgrades must
- preserve prior user data.
+IndexedDB alongside articles, plans, and settings. Dexie schema upgrades must
+preserve prior user data.
 
 ## Consequences
 
