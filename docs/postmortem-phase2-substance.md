@@ -21,18 +21,18 @@ After:
 
 Per fixture:
 
-| Fixture                                  | Before                         | After                                      |
-| ---------------------------------------- | ------------------------------ | ------------------------------------------ |
-| Wikipedia article                        | Useful, thin metadata          | Useful with provenance/confidence          |
-| MDN docs                                 | Flattened docs, no honesty     | Warned `technical-doc-html` import         |
-| GitHub awesome README                    | Wrong filename title           | Warned resource-list with correct title    |
-| Hacker News thread                       | Wrong-confident article        | Warned discussion thread                   |
-| Pocket CSV                               | Wrong-confident header article | Two normalized read-later items            |
-| The Verge RSS                            | Wrong-confident XML article    | Ten feed-entry items                       |
-| arXiv PDF                                | Wrong-confident binary junk    | Actionably rejected unsupported PDF        |
-| Arabic Wikipedia                         | Useful, no language honesty    | Useful with Arabic language metadata       |
-| Empty file                               | Hidden failure                 | Actionably rejected empty input            |
-| Truncated HTML                           | Wrong-confident full article   | Warned partial clip with low confidence    |
+| Fixture               | Before                         | After                                   |
+| --------------------- | ------------------------------ | --------------------------------------- |
+| Wikipedia article     | Useful, thin metadata          | Useful with provenance/confidence       |
+| MDN docs              | Flattened docs, no honesty     | Warned `technical-doc-html` import      |
+| GitHub awesome README | Wrong filename title           | Warned resource-list with correct title |
+| Hacker News thread    | Wrong-confident article        | Warned discussion thread                |
+| Pocket CSV            | Wrong-confident header article | Two normalized read-later items         |
+| The Verge RSS         | Wrong-confident XML article    | Ten feed-entry items                    |
+| arXiv PDF             | Wrong-confident binary junk    | Actionably rejected unsupported PDF     |
+| Arabic Wikipedia      | Useful, no language honesty    | Useful with Arabic language metadata    |
+| Empty file            | Hidden failure                 | Actionably rejected empty input         |
+| Truncated HTML        | Wrong-confident full article   | Warned partial clip with low confidence |
 
 ## Top Logic Gaps
 

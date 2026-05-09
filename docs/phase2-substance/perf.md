@@ -8,18 +8,18 @@ Measured on 2026-05-09 with the real-data fixture set in
 Method: one jsdom-backed Vitest probe parsed each of the 10 real fixtures once
 through `parseImportBytes`.
 
-| Fixture                                  | Shape                    | Status   | Count | Time (ms) |
-| ---------------------------------------- | ------------------------ | -------- | ----: | --------: |
-| `arabic-wikipedia-ai.html`               | `article-html`           | accepted |     1 |   3920.69 |
-| `arxiv-attention.pdf`                    | `unsupported-pdf`        | rejected |     0 |    117.10 |
-| `empty.txt`                              | `empty`                  | rejected |     0 |      0.06 |
-| `github-awesome-readme.md`               | `markdown-resource-list` | warned   |     1 |      4.82 |
-| `hackernews-dropbox-thread.html`         | `discussion-thread`      | warned   |     1 |    653.31 |
-| `mdn-using-fetch.html`                   | `technical-doc-html`     | warned   |     1 |   1622.56 |
-| `pocket-export.csv`                      | `read-later-csv`         | accepted |     2 |      1.48 |
-| `truncated-article.html`                 | `partial-html`           | warned   |     1 |      5.57 |
-| `verge-rss.xml`                          | `feed-xml`               | accepted |    10 |      6.29 |
-| `wikipedia-information-retrieval.html`   | `article-html`           | accepted |     1 |   1429.07 |
+| Fixture                                | Shape                    | Status   | Count | Time (ms) |
+| -------------------------------------- | ------------------------ | -------- | ----: | --------: |
+| `arabic-wikipedia-ai.html`             | `article-html`           | accepted |     1 |   3920.69 |
+| `arxiv-attention.pdf`                  | `unsupported-pdf`        | rejected |     0 |    117.10 |
+| `empty.txt`                            | `empty`                  | rejected |     0 |      0.06 |
+| `github-awesome-readme.md`             | `markdown-resource-list` | warned   |     1 |      4.82 |
+| `hackernews-dropbox-thread.html`       | `discussion-thread`      | warned   |     1 |    653.31 |
+| `mdn-using-fetch.html`                 | `technical-doc-html`     | warned   |     1 |   1622.56 |
+| `pocket-export.csv`                    | `read-later-csv`         | accepted |     2 |      1.48 |
+| `truncated-article.html`               | `partial-html`           | warned   |     1 |      5.57 |
+| `verge-rss.xml`                        | `feed-xml`               | accepted |    10 |      6.29 |
+| `wikipedia-information-retrieval.html` | `article-html`           | accepted |     1 |   1429.07 |
 
 Summary:
 
