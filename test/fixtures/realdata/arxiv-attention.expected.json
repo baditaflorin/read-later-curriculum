@@ -1,0 +1,12 @@
+{
+  "fixture": "arxiv-attention.pdf",
+  "sourceUrl": "https://arxiv.org/pdf/1706.03762",
+  "expectation": {
+    "status": "rejected",
+    "shape": "unsupported-pdf",
+    "minArticleCount": 0,
+    "maxArticleCount": 0,
+    "requiredErrors": ["unsupported PDF"],
+    "maxConfidence": 0.05
+  }
+}

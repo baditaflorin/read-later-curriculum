@@ -92,7 +92,12 @@ export async function embedTexts(
   texts: string[],
   mode: "fast" | "semantic",
   onProgress?: ProgressCallback,
+  signal?: AbortSignal,
 ): Promise<EmbeddingResult> {
+  if (signal?.aborted) {
+    throw new Error("Build cancelled before embeddings started.");
+  }
+
   if (mode === "fast") {
     onProgress?.({
       completed: texts.length,
@@ -134,6 +139,9 @@ export async function embedTexts(
     const vectors: number[][] = [];
     const batchSize = 8;
     for (let offset = 0; offset < texts.length; offset += batchSize) {
+      if (signal?.aborted) {
+        throw new Error("Build cancelled while embedding articles.");
+      }
       const batch = texts.slice(offset, offset + batchSize);
       const output = await extractor(batch, {
         pooling: "mean",

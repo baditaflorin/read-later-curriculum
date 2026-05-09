@@ -1,0 +1,12 @@
+{
+  "fixture": "arabic-wikipedia-ai.html",
+  "sourceUrl": "https://ar.wikipedia.org/wiki/ذكاء_اصطناعي",
+  "expectation": {
+    "status": "accepted",
+    "shape": "article-html",
+    "minArticleCount": 1,
+    "titleIncludes": ["ذكاء اصطناعي"],
+    "minConfidence": 0.7,
+    "expectedLanguage": "ar"
+  }
+}

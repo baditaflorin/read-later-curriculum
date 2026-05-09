@@ -1,0 +1,13 @@
+{
+  "fixture": "github-awesome-readme.md",
+  "sourceUrl": "https://raw.githubusercontent.com/sindresorhus/awesome/main/readme.md",
+  "expectation": {
+    "status": "warned",
+    "shape": "markdown-resource-list",
+    "minArticleCount": 1,
+    "titleIncludes": ["Awesome"],
+    "minConfidence": 0.45,
+    "maxConfidence": 0.8,
+    "requiredWarnings": ["resource list"]
+  }
+}

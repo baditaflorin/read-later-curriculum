@@ -1,0 +1,13 @@
+{
+  "fixture": "truncated-article.html",
+  "sourceUrl": "local:truncated-html",
+  "expectation": {
+    "status": "warned",
+    "shape": "partial-html",
+    "minArticleCount": 1,
+    "titleIncludes": ["Half clipped article"],
+    "minConfidence": 0.2,
+    "maxConfidence": 0.6,
+    "requiredWarnings": ["partial"]
+  }
+}

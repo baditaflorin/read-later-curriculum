@@ -195,3 +195,36 @@ export function stableId(prefix: string) {
   }
   return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
 }
+
+export function hashString(value: string) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
+export function slugify(value: string) {
+  const slug = normalizeWhitespace(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 48);
+  return slug || "untitled";
+}
+
+export function stableContentId(prefix: string, label: string, seed: string) {
+  return `${prefix}_${slugify(label)}_${hashString(seed)}`;
+}
+
+export function normalizeInputText(value: string) {
+  return value
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n?/g, "\n")
+    .replace(/\u00a0/g, " ")
+    .replace(/[\u2000-\u200a\u202f\u205f\u3000]/g, " ")
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/\u2026/g, "...");
+}

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?><feed
+	xmlns="http://www.w3.org/2005/Atom"
+	xmlns:thr="http://purl.org/syndication/thread/1.0"
+	xml:lang="en-US"
+	>
+	<title type="text">The Verge</title>
+	<subtitle type="text">The Verge is about technology and how it makes us feel. Founded in 2011, we offer our audience everything from breaking news to reviews to award-winning features and investigations, on our site, in video, and in podcasts.</subtitle>
+
+	<updated>2026-05-08T20:34:24+00:00</updated>
+
+	<link rel="alternate" type="text/html" href="https://www.theverge.com" />
+	<id>https://www.theverge.com/rss/index.xml</id>
+	<link rel="self" type="application/atom+xml" href="https://www.theverge.com/rss/index.xml" />
+
+	<icon>https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/verge-rss-large_80b47e.png?w=150&amp;h=150&amp;crop=1</icon>
+		<entry>
+			
+			<author>
+				<name>Stevie Bonifield</name>
+			</author>
+			
+			<title type="html"><![CDATA[Asus chases Elgato with its own secondary touchscreen display]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/games/927333/asus-rog-strix-xg129c-secondary-display" />
+			<id>https://www.theverge.com/?p=927333</id>
+			<updated>2026-05-08T16:34:24-04:00</updated>
+			<published>2026-05-08T16:34:24-04:00</published>
+			<category scheme="https://www.theverge.com" term="Gaming" /><category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="PC Gaming" /><category scheme="https://www.theverge.com" term="Tech" />
+							<summary type="html"><![CDATA[Asus's latest gaming monitor is a little smaller than usual. The ROG Strix XG129C, announced on Friday, is a 12.3-inch touchscreen IPS display that's intended to be a sidekick for a larger main monitor, similar to the 14.1-inch secondary display in the 2020 Asus ROG Zephyrus Duo 15. It's a slightly smaller competitor to Corsair's [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="A gaming PC on a desk with an Asus ROG monitor and an ROG Strix XG129C secondary display" data-caption="" data-portal-copyright="Image: Asus" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/asus-rog-strix-xg129c-announcement-lifestyle.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">Asus's latest gaming monitor is a little smaller than usual. The ROG Strix XG129C, <a href="https://press.asus.com/news/press-releases/strix-oled-xg34wcdms-xg129c-gaming-monitors/">announced on Friday</a>, is a 12.3-inch touchscreen IPS display that's intended to be a sidekick for a larger main monitor, similar to the 14.1-inch secondary display in the 2020 <a href="https://www.theverge.com/21431381/asus-rog-zephyrus-duo-15-review">Asus ROG Zephyrus Duo 15</a>. It's a slightly smaller competitor to <a href="https://www.corsair.com/us/en/p/monitors/cc-9011306-ww/xeneon-edge-14-5-lcd-touchscreen-cc-9011306-ww">Corsair's Xeneon Edge</a>, which has a 14.5-inch display, but the same 720p resolution. </p>
+<p class="has-text-align-none">Asus says the XG129C covers 125 percent of the sRGB color gamut and 90 percent of the DCI-P3 color gamut. It also comes with a one-year subscription for the hardware monitoring tool <a href="https://www.aida64.com/online-store/aida64-extreme">AIDA64 Extreme</a>, which would usually cost $65. Besides actin …</p>
+<p><a href="https://www.theverge.com/games/927333/asus-rog-strix-xg129c-secondary-display">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Emma Roth</name>
+			</author>
+			
+			<title type="html"><![CDATA[Amazon is adding a vertical video feed to Prime Video]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/streaming/927327/amazon-prime-video-vertical-video-feed" />
+			<id>https://www.theverge.com/?p=927327</id>
+			<updated>2026-05-08T16:19:57-04:00</updated>
+			<published>2026-05-08T16:19:57-04:00</published>
+			<category scheme="https://www.theverge.com" term="Amazon" /><category scheme="https://www.theverge.com" term="Entertainment" /><category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="Streaming" /><category scheme="https://www.theverge.com" term="Tech" />
+							<summary type="html"><![CDATA[Amazon Prime Video is joining Netflix and Disney Plus in adding a vertical feed of videos to its streaming app. The new "Clips" feed will offer a stream of short-form videos from shows and movies, with options to jump into the full title, rent, or buy it. Prime Video previously offered a TikTok-style feed with [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="A screenshot of Prime Video’s Clips feature" data-caption="" data-portal-copyright="Image: Amazon" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/clips-prime-video.webp?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">Amazon Prime Video is joining <a href="https://www.theverge.com/streaming/920179/netflix-vertical-video-feed-mobile-app-ui">Netflix</a> and <a href="https://www.theverge.com/tech/858277/disney-plus-vertical-video">Disney Plus</a> in adding a vertical feed of videos to its streaming app. The <a href="https://press.aboutamazon.com/prime-video/2026/5/prime-video-delivers-a-new-way-to-discover-entertainment-with-clips">new "Clips" feed</a> will offer a stream of short-form videos from shows and movies, with options to jump into the full title, rent, or buy it.</p>
+<p class="has-text-align-none">Prime Video previously offered a TikTok-style feed with NBA game highlights, but now you can see snippets from titles offered on the platform by scrolling down to the Clips carousel on the app's homepage. "Every time you visit the experience, you'll see something new based on your viewing history," Prime Video says.</p>
+<p class="has-text-align-none">You can also add shows and movies to your watchlist from the Clips feed a …</p>
+<p><a href="https://www.theverge.com/streaming/927327/amazon-prime-video-vertical-video-feed">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Sean Hollister</name>
+			</author>
+			
+			<title type="html"><![CDATA[Here is Yarbo’s promise to fix the robot mower that ran me over]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/tech/926989/yarbo-robot-lawn-mower-hack-company-update-security-promise" />
+			<id>https://www.theverge.com/?p=926989</id>
+			<updated>2026-05-08T15:15:15-04:00</updated>
+			<published>2026-05-08T15:14:34-04:00</published>
+			<category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="Tech" />
+							<summary type="html"><![CDATA[Yesterday, I told you how a hacker ran me over with a robot lawn mower. We explained how thousands of these bladed Chinese robots, made by Yarbo, could be hijacked with ease - exposing people's GPS coordinates, Wi-Fi passwords, email addresses, and more to any casual hacker who comes along. Today, Yarbo has issued a [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="" data-caption="" data-portal-copyright="Image: Yarbo" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/0b40c0f7e4e14d22b4eb0a04c2c2394e.webp?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">Yesterday, I told you how <a href="https://www.theverge.com/tech/925696/yarbo-robot-lawn-mower-hack-remote-control-camera-access-mqtt">a hacker ran me over with a robot lawn mower</a>. We explained how thousands of these bladed Chinese robots, made by Yarbo, could be hijacked with ease - exposing people's GPS coordinates, Wi-Fi passwords, email addresses, and more to any casual hacker who comes along. </p>
+<p class="has-text-align-none">Today, Yarbo has issued <a href="https://www.yarbo.com/pages/security-update-regarding-yarbo-remote-diagnostic-systems">a thorough 1,200-word response</a> that you can read in full below. The company is confirming the security researcher's findings, apologizing, and providing a detailed plan to tackle many of its self-created security issues head-on. Yarbo writes that it's already temporarily cut off remote access and is addressing many of its most he …</p>
+<p><a href="https://www.theverge.com/tech/926989/yarbo-robot-lawn-mower-hack-company-update-security-promise">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Verge Staff</name>
+			</author>
+			
+			<author>
+				<name>Justine Calma</name>
+			</author>
+			
+			<title type="html"><![CDATA[All the latest updates on AI data centers]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/ai-artificial-intelligence/902546/data-centers-ai-energy-power-grids-controversy" />
+			<id>https://www.theverge.com/?post_type=vm_stream&#038;p=902546</id>
+			<updated>2026-05-08T15:14:10-04:00</updated>
+			<published>2026-05-08T14:45:08-04:00</published>
+			<category scheme="https://www.theverge.com" term="AI" /><category scheme="https://www.theverge.com" term="Energy" /><category scheme="https://www.theverge.com" term="Environment" /><category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="Science" />
+							<summary type="html"><![CDATA[Massive new data centers are the physical foundation for tech companies’ hopes and dreams for AI. But the rush to expand warehouses full of energy-hungry servers has also kicked up fights across the world over their impact on power grids, utility bills, nearby communities, and the environment.&#160; From audacious plans to launch data centers into [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="Photo collage of a server room with data visualizations." data-caption="" data-portal-copyright="Image: Cath Virginia / The Verge, Getty Images" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_C.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">Massive new data centers are the physical foundation for tech companies’ hopes and dreams for AI. But the rush to expand warehouses full of energy-hungry servers has also kicked up fights across the world over their impact on power grids, utility bills, nearby communities, and the environment.&nbsp;</p>
+
+<p class="has-text-align-none">From audacious plans to <a href="https://www.theverge.com/ai-artificial-intelligence/845453/space-data-centers-astronomers">launch data centers into space</a> to the latest <a href="https://www.theverge.com/exclusive/770650/data-center-ai-naacp-guiding-principles">legal battles</a> over pollution, <em>The Verge </em>has the biggest news and reporting surrounding data centers.</p>
+
+<p class="has-text-align-none"></p>
+<ul>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/925426/43-percent-of-americans-blame-data-centers-as-a-major-reason-for-rising-power-bills">43 percent of Americans blame data centers as a major reason for rising power bills.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/924745/a-40000-acre-data-center-project-was-just-approved-in-utah-despite-outcry-from-the-community">A 40,000-acre data center project was just approved in Utah, despite outcry from the community.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/918905/a-political-battleground-is-forming-around-data-centers">A political battleground is forming around data centers.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/912993/are-data-centers-coming-to-your-area">Are AI data centers coming to your area?</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/912793/data-centers-will-soon-have-to-complete-mandatory-energy-usage-surveys">Data centers will soon have to complete “mandatory” energy usage surveys.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/912337/a-data-center-should-not-be-a-potential-death-sentence-for-a-communitys-health">“A data center should not be a potential death sentence for a community’s health.”</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/907427/iran-openai-stargate-datacenter-uae-abu-dhabi-threat">Iran threatens OpenAI’s Stargate data center in Abu Dhabi</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/policy/901404/senators-warren-hawley-eia-letter-data-centers">Senators are pushing to find out how much electricity data centers actually use</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/899823/arm-agi-cpu-meta">Arm’s first CPU ever will plug into Meta’s AI data centers later this year</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/899533/data-center-power-lake-tahoe-utility">Lake Tahoe has to look for a new power source as data center demand soars.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/report/892661/iran-war-oil-gas-prices-data-center-electricity">How the spiraling Iran conflict could affect data centers and electricity costs</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/889578/data-center-power-pledge-white-house-google-meta-microsoft">Seven tech giants signed Trump’s pledge to keep electricity costs from spiking around data centers </a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/884191/ai-data-center-energy-state-of-the-union-trump">Trump claims tech companies will sign deals next week to pay for their own power supply</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/877526/anthropic-ai-electricity-costs-data-center-pledge">Anthropic says it&#8217;ll try to keep its data centers from raising electricity costs</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/876555/meta-data-center-winter-power-outages-storm-ice">How an ‘icepocalypse’ raises more questions about Meta’s biggest data center project</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/876083/microsoft-ai-data-center-superconductor">Microsoft wants to rewire data centers to save space</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/875501/new-york-is-considering-two-bills-to-rein-in-the-ai-industry">New York is considering two bills to rein in the AI industry</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/transportation/873203/elon-musk-spacex-xai-merge-data-centers-space-tesla-ipo">Elon Musk is merging SpaceX and xAI to build data centers in space — or so he says</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/870422/data-center-ai-gas-power-surge">It’s a new heyday for gas thanks to data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/869047/microsoft-gets-approval-to-build-15-data-centers-in-mount-pleasant-wisconsin">Microsoft gets approval to build 15 data centers in Mount Pleasant, Wisconsin.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/869008/meta-data-centers-ad-campaign">Meta is spending millions to convince people that data centers are cool and you like them</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/report/868859/electricity-rates-power-grid-ai-data-center-winter-storm">The winter storm tested power grids straining to accommodate AI data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/865387/microsoft-wants-to-build-15-data-centers-in-mount-pleasant-wisconsin">Microsoft wants to build 15 data centers in Mount Pleasant, Wisconsin.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/864798/openai-data-center-opposition-energy-bills">OpenAI says its data centers will pay for their own energy and limit water usage</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/863280/ice-hits-meta-data-center-project">ICE hits Meta data center project.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/862820/amazon-arizona-copper-mine-data-centers">Amazon is buying copper harvested by bacteria for its data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/861080/microsoft-ai-data-center-infrastructure-electricity-rates">Microsoft scrambles to quell fury around its new AI data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/861005/data-center-projects-canceled-ai-energy-water-opposition">Data center projects are dropping like flies.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/858018/thats-a-lot-of-money-for-just-one-data-center-job">That’s a lot of money for just one data center job.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/849455/googles-parent-company-is-acquiring-a-data-center-company">Alphabet is acquiring a data center company.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/841169/ai-data-center-opposition">Communities are rising up against data centers — and winning</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/846696/electricity-cost-ai-data-center-democrat-investigation">Democratic lawmakers are investigating data centers’ impact on electricity costs </a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/845453/space-data-centers-astronomers">Billionaires want data centers everywhere, including space</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/845831/ai-chips-data-center-power-water">AI&#8217;s water and electricity use soars in 2025</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/844966/heavy-ai-data-center-buildout">Racks of AI chips are too damn heavy</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/841887/data-center-space-solar-power-aetherflux-lunch">The scramble to launch data centers into space is heating up</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/840883/data-center-moratorium-letter-congress">Data center construction moratorium is gaining steam</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/835480/satya-nadella-microsoft-ai-data-center-energy">Satya Nadella acknowledged that data centers are “putting a lot of pressure” on power grids.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/science/835214/blackout-data-center-electricity-demand">The largest power grid system in the US is considering rolling blackouts because of energy-hungry data centers.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/834151/amazon-data-centers-oregon-cancer-miscarriage">Data centers in Oregon might be helping to drive an increase in cancer and miscarriages</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/tech/824111/nvidia-q3-2026-earnings-data-center-revenue">Nvidia says some AI GPUs are ‘sold out,’ grows data center business by $10B in just three months</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/819390/data-centers-energy-forecast-iea">Data centers are already influencing the global forecast for clean energy.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/819072/anthropic-50-billion-infrastructure-ai-data-center-investment">Anthropic will invest $50 billion in building AI data centers in the US</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/813894/google-project-suncatcher-ai-datacenter-satellites">Google has a ‘moonshot’ plan for AI data centers in space</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/805682/google-data-center-gas-power-plant-carbon-capture">Google is turning on the gas for its data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/802178/data-center-ai-electricity-power-plants">Why data centers are building their own power plants</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/790688/electricity-bills-rise-data-centers">Electricity costs are up to 267 percent higher than they used to be in communities near data centers.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/report/785992/ai-chip-cooling-microsoft-microfluidic-energy-efficiency">Microsoft says this new cooling method could enable more powerful chips and efficient data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/ai-artificial-intelligence/784251/openai-oracle-and-softbank-announced-five-new-ai-data-centers-as-part-of-stargate">OpenAI, Oracle, and SoftBank announced five new AI data centers as part of Stargate.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/781052/microsoft-foxconn-fairwater-worlds-most-powerful-ai-data-center">Microsoft is turning Foxconn&#8217;s empty buildings into the &#8216;world&#8217;s most powerful&#8217; AI data center</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/780792/nvidia-intel-investment-pc-chips-data-center">Nvidia invests $5 billion into Intel to jointly develop PC and data center chips</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/exclusive/770650/data-center-ai-naacp-guiding-principles">Tech companies ‘be on alert,’ NAACP says with new guiding principles for data centers</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/668934/meta-ai-data-center-gas-energy-climate-sustainability">Meta faces Democratic probe into plans to power a giant data center with gas</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/news/604677/amazon-is-investing-billions-more-into-its-mississippi-datacenter">Amazon is investing billions more into its Mississippi data centers.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2025/1/24/24351061/mark-zuckerberg-meta-ai-data-center-investment">Mark Zuckerberg wants you to know he has a big AI data center, too</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2025/1/23/24350335/bill-gates-terrapower-data-center-sabey-nuclear-energy-ai">Bill Gates’ nuclear energy startup inks new data center deal</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2025/1/21/24348816/openai-softbank-ai-data-center-stargate-project">OpenAI and SoftBank are starting a $500 billion AI data center company</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2025/1/21/24348801/cbs-news-reports-openai-oracle-and-softbank-will-announce-a-stargate-ai-data-center-project-in-texas">CBS News reports OpenAI, Oracle, and Softbank will announce a “Stargate” AI data center project.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2025/1/14/24328120/data-center-executive-order-biden-energy">Joe Biden signs executive order to speed AI data center construction</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/12/23/24328172/go-read-this-report-on-arizona-data-centers-and-those-without-power-in-the-state">Go read this report on Arizona data centers and those without power in the state.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/12/10/24317888/googles-data-center-solar-wind-renewable-energy-intersect-partnership">Google’s future data centers will be built next to solar and wind farms</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/12/4/24313357/meta-is-putting-a-10-billion-ai-data-center-in-louisiana">Meta is putting a $10 billion AI data center in Louisiana.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/11/13/24295688/xai-competitors-are-flying-spy-planes-over-the-colossus-data-center">xAI competitors are flying spy planes over the ‘Colossus’ data center.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/11/4/24288159/new-ai-data-centers-could-raise-americans-electricity-bills">New AI data centers could raise Americans’ electricity bills.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/9/11/24242221/some-memphis-residents-are-pissed-about-xais-new-data-center">Some Memphis residents are pissed about xAI’s new data center.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/8/29/24231301/meta-facebook-geothermal-energy-sage-data-center-partnership">Can Meta clean up its data centers with geothermal energy?</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/8/28/24230395/xai-faces-accusations-its-data-center-is-polluting-the-air">xAI faces accusations its data center is polluting the air.</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/7/11/24195989/climate-change-carbon-removal-startup-280-earth-google">This climate tech startup wants to capture carbon and help data centers cool down</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/5/20/24160788/google-ai-data-center-expansion-heat-recovery">Google plans to reuse heat after expanding a data center for AI</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2024/1/24/24049047/data-center-ai-crypto-bitcoin-mining-electricity-report-iea">AI and crypto mining are driving up data centers’ energy use</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2023/11/28/23972940/google-data-center-geothermal-energy">Google’s new geothermal energy project is up and running</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2023/10/10/23911059/ai-climate-impact-google-openai-chatgpt-energy">The environmental impact of the AI revolution is starting to come into focus</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/23641207/data-center-pools-united-kingdom-energy-cost-saving">How data centers at public pools can keep swimmers warm</a>
+			</li>
+					<li>
+				<a href="https://www.theverge.com/2022/7/28/23281394/microsoft-data-centers-hydrogen-fuel-cells">Can hydrogen fuel cells power Microsoft data centers?</a>
+			</li>
+			</ul>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Emma Roth</name>
+			</author>
+			
+			<title type="html"><![CDATA[DOGE used ChatGPT in a way that was both dumb and illegal, judge rules]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/policy/927071/doge-chatgpt-grants-canceled" />
+			<id>https://www.theverge.com/?p=927071</id>
+			<updated>2026-05-08T14:27:32-04:00</updated>
+			<published>2026-05-08T14:02:44-04:00</published>
+			<category scheme="https://www.theverge.com" term="Law" /><category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="Policy" /><category scheme="https://www.theverge.com" term="Politics" /><category scheme="https://www.theverge.com" term="Speech" />
+							<summary type="html"><![CDATA[The Department of Government Efficiency's cancellation of over $100 million in grants was unconstitutional, according to a ruling on Thursday. In the 143-page decision, US District Judge Colleen McMahon cites DOGE's process for eliminating grants, which involved using ChatGPT to determine if something is related to diversity, equity, and inclusion (DEI). The ruling, which stems [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="Illustration of Cheems meme in front of the words “Department of Governmental Efficiency”." data-caption="" data-portal-copyright="Image: Cath Virginia / The Verge" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STKS486_DOGE_DEPARTMENT_2_E.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">The Department of Government Efficiency's cancellation of over $100 million in grants was unconstitutional, according to a ruling on Thursday. In <a href="https://www.documentcloud.org/documents/28104686-doge-chatgpt-ruling/">the 143-page decision</a>, US District Judge Colleen McMahon cites DOGE's process for eliminating grants, which involved using ChatGPT to determine if something is related to diversity, equity, and inclusion (DEI).</p>
+<p class="has-text-align-none">The ruling, which stems <a href="https://apnews.com/article/doge-trump-humanities-executive-order-lawsuit-2b706c8196d3b160a541df36261a662d">from a 2025 lawsuit filed by humanities groups</a>, says "it could not be more obvious that DOGE used the mere presence of particular, protected characteristics to disqualify grants from continued funding" from the National Endowment for the Humanities (NEH). Judge McMah …</p>
+<p><a href="https://www.theverge.com/policy/927071/doge-chatgpt-grants-canceled">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Lauren Feiner</name>
+			</author>
+			
+			<title type="html"><![CDATA[ABC and Disney accuse Trump admin of violating First Amendment rights]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/policy/927002/abc-disney-fcc-first-amendment-the-view" />
+			<id>https://www.theverge.com/?p=927002</id>
+			<updated>2026-05-08T13:52:28-04:00</updated>
+			<published>2026-05-08T13:52:28-04:00</published>
+			<category scheme="https://www.theverge.com" term="Disney" /><category scheme="https://www.theverge.com" term="Entertainment" /><category scheme="https://www.theverge.com" term="Policy" /><category scheme="https://www.theverge.com" term="Politics" /><category scheme="https://www.theverge.com" term="Regulation" /><category scheme="https://www.theverge.com" term="Speech" /><category scheme="https://www.theverge.com" term="Streaming" />
+							<summary type="html"><![CDATA[ABC is accusing the Federal Communications Commission (FCC) of violating its First Amendment rights by making "major shifts in policy and practice" that the network claims will chill free speech. The network is asking the FCC to "affirm its long-standing approach to the bona fide news interview exemption" for daytime talk show The View, and [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="Digital photo illustration of FCC chair Brendan Carr." data-caption="" data-portal-copyright="Image: Cath Virginia / The Verge, Getty Images" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25840497/STKP211_BRENDAN_CARR_B.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">ABC is <a href="https://www.fcc.gov/ecfs/document/10507899614175/1">accusing the Federal Communications Commission</a> (FCC) of violating its First Amendment rights by making "major shifts in policy and practice" that the network claims will chill free speech.</p>
+<p class="has-text-align-none">The network is asking the FCC to "affirm its long-standing approach to the bona fide news interview exemption" for daytime talk show <em>The View</em>, and the agency's support of "public interest services provided by broadcast stations." ABC says that a series of actions from the FCC "suggests that the Commission is implementing major shifts in policy and practice," and that "requires the action of the full Commission and the oversight of the courts." The  …</p>
+<p><a href="https://www.theverge.com/policy/927002/abc-disney-fcc-first-amendment-the-view">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Dominic Preston</name>
+			</author>
+			
+			<title type="html"><![CDATA[Someone out-Trumped the Trump phone]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/gadgets/926968/trump-mobile-t1-phone-dreame-aurora-phones" />
+			<id>https://www.theverge.com/?p=926968</id>
+			<updated>2026-05-08T13:38:53-04:00</updated>
+			<published>2026-05-08T13:38:53-04:00</published>
+			<category scheme="https://www.theverge.com" term="Gadgets" /><category scheme="https://www.theverge.com" term="Mobile" /><category scheme="https://www.theverge.com" term="Phones" /><category scheme="https://www.theverge.com" term="Tech" />
+							<summary type="html"><![CDATA[Where's the Trump phone? We're going to keep talking about it every week. We've reached out, as usual, to ask about the Trump phone's whereabouts. This week, Trump Mobile has been trumped. It's been another long week without the Trump phone, but it's no longer the only nonexistent phone I have to worry about. Robot [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="Five versions of the Dreame Aurora Lux phone surrounded by butterflies" data-caption="These are just five of the 29 versions of the Aurora Lux that Dreame claims it will release. | Screenshot: Dreame" data-portal-copyright="Screenshot: Dreame" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/dreame-aurora-lux.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+	These are just five of the 29 versions of the Aurora Lux that Dreame claims it will release. | Screenshot: Dreame	</figcaption>
+</figure>
+<p class="has-text-align-none"><em><em><em><a href="https://www.theverge.com/gadgets/843498/trump-phone"><em>Where's the Trump phone? We're going to keep talking about it every week</em></a>.</em></em> We've reached out, as usual, to ask about the Trump phone's whereabouts. This week, Trump Mobile has been trumped.</em></p>
+<p class="has-text-align-none">It's been another long week without the Trump phone, but it's no longer the only nonexistent phone I have to worry about. Robot vacuum manufacturer Dreame has announced its own set of phones that are unlikely to ever launch, and one of them takes the Trump phone playbook and amps it up to 11.</p>
+<p class="has-text-align-none">I was alerted to the existence of Dreame's two new phones shortly after I filed last week's report on the <a href="https://www.theverge.com/gadgets/922180/trump-mobile-t1-phone-ptcrb-certification-t-mobile">T1 Phone's PTCRB certification</a>, though they <a href="https://www.theverge.com/gadgets/922246/dreame-next-smartphones-aurora-lux-nex-modular">"launched" las …</a></p>
+<p><a href="https://www.theverge.com/gadgets/926968/trump-mobile-t1-phone-dreame-aurora-phones">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Jay Peters</name>
+			</author>
+			
+			<title type="html"><![CDATA[Apple reportedly has a deal to use Intel-made chips again]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/tech/926988/apple-intel-chips" />
+			<id>https://www.theverge.com/?p=926988</id>
+			<updated>2026-05-08T14:00:21-04:00</updated>
+			<published>2026-05-08T13:22:04-04:00</published>
+			<category scheme="https://www.theverge.com" term="Apple" /><category scheme="https://www.theverge.com" term="Intel" /><category scheme="https://www.theverge.com" term="News" /><category scheme="https://www.theverge.com" term="Tech" />
+							<summary type="html"><![CDATA[Apple and Intel reached a "preliminary agreement" for Intel to make chips for Apple hardware, The Wall Street Journal reported Friday. Apple had famously moved on from Intel-powered computers with its highly successful transition to Apple Silicon, but now it appears the two companies will be working closely together again. Intel appointed Lip-Bu Tan as [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="An image of the Apple logo on a colorful background." data-caption="" data-portal-copyright="Image: Cath Virginia / The Verge" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK071_APPLE_H.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">Apple and Intel reached a "preliminary agreement" for Intel to make chips for Apple hardware, <a href="https://www.wsj.com/tech/apple-intel-have-reached-preliminary-chip-making-agreement-69eb9370?mod=hp_lead_pos1"><em>The Wall Street</em> <em>Journal</em> reported Friday</a>. Apple had famously moved on from Intel-powered computers with its highly successful transition to Apple Silicon, but now it appears the two companies will be working closely together again.</p>
+<p class="has-text-align-none">Intel appointed Lip-Bu Tan as its new CEO <a href="https://www.theverge.com/news/628539/intel-new-ceo-lip-bu-tan-pat-gelsinger">in March 2025</a>, and in August, the US government took <a href="https://www.theverge.com/news/764480/intel-donald-trump-lip-bu-tan-deal">a 10 percent stake</a> in the company.  </p>
+<p class="has-text-align-none">The WSJ says that it's "still unclear" what Apple products will get Intel chips. Intel spokesperson Kiana Ducey declined to comment. Apple didn't immediately reply to a request for comment.</p>
+ …
+<p><a href="https://www.theverge.com/tech/926988/apple-intel-chips">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Cameron Faulkner</name>
+			</author>
+			
+			<title type="html"><![CDATA[The Steam Controller’s reservation queue is open]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/gadgets/924672/steam-controller-reservation-queue-buy" />
+			<id>https://www.theverge.com/?p=924672</id>
+			<updated>2026-05-08T12:59:42-04:00</updated>
+			<published>2026-05-08T12:59:42-04:00</published>
+			<category scheme="https://www.theverge.com" term="Gadgets" /><category scheme="https://www.theverge.com" term="Gaming" /><category scheme="https://www.theverge.com" term="PC Gaming" /><category scheme="https://www.theverge.com" term="Verge Shopping" />
+							<summary type="html"><![CDATA[After quickly selling out of the Steam Controller on May 4th, Valve has launched a reservation system to ensure that you can get one without too much hassle. You may not get one as quickly as you'd like to, but at least you can now easily reserve the $99 controller. If your Steam account is [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="" data-caption="" data-portal-copyright="Photo by Amelia Holowaty Krales / The Verge" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268455_Steam_Controller_AKrales_0050.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-text-align-none">After quickly selling out of the <strong>Steam Controller</strong> on May 4th, Valve has <a href="https://store.steampowered.com/sale/steamcontroller">launched a reservation system</a> to ensure that you can get one without too much hassle. You may not get one as quickly as you'd like to, but at least you can now easily reserve the $99 controller.</p>
+<p class="has-text-align-none">If your Steam account is in good standing, and you've purchased something on the account before April 27th of this year, you'll be able to reserve one. Essentially, this will hold your place in line for future restocks. Once a controller is available for you, you'll get an email prompting you to purchase. You'll have 72 hours to purchase your Steam Controller before it gets offe …</p>
+<p><a href="https://www.theverge.com/gadgets/924672/steam-controller-reservation-queue-buy">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+			<entry>
+			
+			<author>
+				<name>Sheena Vasani</name>
+			</author>
+			
+			<title type="html"><![CDATA[The 46 best last-minute Mother’s Day gift ideas for 2026]]></title>
+			<link rel="alternate" type="text/html" href="https://www.theverge.com/gadgets/907032/best-mothers-day-gift-ideas-2026-mom-tech-gadgets" />
+			<id>https://www.theverge.com/?p=907032</id>
+			<updated>2026-05-08T12:56:17-04:00</updated>
+			<published>2026-05-08T12:46:00-04:00</published>
+			<category scheme="https://www.theverge.com" term="Gadgets" /><category scheme="https://www.theverge.com" term="Gift Guides" /><category scheme="https://www.theverge.com" term="Tech" /><category scheme="https://www.theverge.com" term="Verge Shopping" />
+							<summary type="html"><![CDATA[Whether it's managing a busy home or looking out for everyone around them, moms spend a lot of time every day caring for others. This Sunday, Mother's Day, is an opportunity to return the favor, so we've rounded up practical gadgets and little luxuries that can lighten her load. This year's picks are designed to [&#8230;]]]></summary>
+			
+							<content type="html">
+											<![CDATA[
+
+						
+<figure>
+
+<img alt="" data-caption="" data-portal-copyright="Image: The Verge" data-has-syndication-rights="1" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/268437_The_Verges_2026_Mothers_Day_gift_guide_CVirginia.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100" />
+	<figcaption>
+		</figcaption>
+</figure>
+<p class="has-drop-cap has-text-align-none">Whether it's managing a busy home or looking out for everyone around them, moms spend a lot of time every day caring for others. This Sunday, Mother's Day, is an opportunity to return the favor, so we've rounded up practical gadgets and little luxuries that can lighten her load.</p>
+<p class="has-text-align-none">This year's picks are designed to support moms in a variety of ways, regardless of their interests. Some of our recs, like <a href="https://www.amazon.com/roborock-Q10-S5-Self-Emptying-Anti-Tangle/dp/B0DWXBCQVP">Roborock's mop-equipped Q10 Plus</a>, can help save precious time, while smart screens like the <a href="https://www.bestbuy.com/product/skylight-calendar-2-15-inch-touchscreen-smart-calendar-and-chore-chart-white/J3R845QLVJ/sku/6665550">Skylight Calendar 2</a> can help take the stress out of managing a busy family schedule. Other gifts are all about relaxation and self-care, whether through <a href="https://www.amazon.com/Apple-Smartwatch-Starlight-Aluminum-Always/dp/B0FQFNRH72"> …</a></p>
+<p><a href="https://www.theverge.com/gadgets/907032/best-mothers-day-gift-ideas-2026-mom-tech-gadgets">Read the full story at The Verge.</a></p>
+						]]>
+									</content>
+			
+					</entry>
+	</feed>

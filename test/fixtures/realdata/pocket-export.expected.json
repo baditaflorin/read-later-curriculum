@@ -1,0 +1,12 @@
+{
+  "fixture": "pocket-export.csv",
+  "sourceUrl": "local:pocket-export",
+  "expectation": {
+    "status": "accepted",
+    "shape": "read-later-csv",
+    "minArticleCount": 2,
+    "titleIncludes": ["Information retrieval", "Using Fetch"],
+    "minConfidence": 0.8,
+    "maxErrorCount": 0
+  }
+}

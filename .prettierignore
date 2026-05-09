@@ -10,3 +10,4 @@ docs/manifest.webmanifest
 docs/version.json
 playwright-report
 test-results
+test/fixtures/realdata

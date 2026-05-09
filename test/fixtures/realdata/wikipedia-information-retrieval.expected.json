@@ -1,0 +1,12 @@
+{
+  "fixture": "wikipedia-information-retrieval.html",
+  "sourceUrl": "https://en.wikipedia.org/wiki/Information_retrieval",
+  "expectation": {
+    "status": "accepted",
+    "shape": "article-html",
+    "minArticleCount": 1,
+    "titleIncludes": ["Information retrieval"],
+    "minConfidence": 0.75,
+    "maxErrorCount": 0
+  }
+}

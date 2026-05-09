@@ -1,0 +1,12 @@
+{
+  "fixture": "empty.txt",
+  "sourceUrl": "local:empty",
+  "expectation": {
+    "status": "rejected",
+    "shape": "empty",
+    "minArticleCount": 0,
+    "maxArticleCount": 0,
+    "requiredErrors": ["empty"],
+    "maxConfidence": 0.05
+  }
+}

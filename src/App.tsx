@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Archive,
@@ -88,6 +88,7 @@ function App() {
   const [sourceUrl, setSourceUrl] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
+  const abortRef = useRef<AbortController | null>(null);
   const [progress, setProgress] = useState<BuildProgress>({
     phase: "idle",
     detail: "",
@@ -122,6 +123,8 @@ function App() {
   const completedCount = articles.filter(
     (article) => article.status === "done",
   ).length;
+  const debugEnabled =
+    new URLSearchParams(window.location.search).get("debug") === "1";
 
   const saveArticlesMutation = useMutation({
     mutationFn: saveArticles,
@@ -150,8 +153,19 @@ function App() {
 
   const buildMutation = useMutation({
     mutationFn: async () => {
-      const built = await buildCurriculum(articles, settings, setProgress);
-      return savePlan(built);
+      const controller = new AbortController();
+      abortRef.current = controller;
+      try {
+        const built = await buildCurriculum(
+          articles,
+          settings,
+          setProgress,
+          controller.signal,
+        );
+        return savePlan(built);
+      } finally {
+        abortRef.current = null;
+      }
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: planQueryKey });
@@ -179,18 +193,35 @@ function App() {
 
     const imported: Article[] = [];
     const warnings: string[] = [];
+    const errors: string[] = [];
     for (const file of files) {
       const result = await parseImportFile(file);
       warnings.push(...result.warnings);
+      errors.push(...result.errors);
       imported.push(
         ...result.articles.map((draft) =>
           normalizeDraft(draft, settings.readingSpeedWpm),
         ),
       );
     }
-    await saveArticlesMutation.mutateAsync(imported);
-    if (warnings.length > 0) {
+
+    if (imported.length > 0) {
+      await saveArticlesMutation.mutateAsync(imported);
+    }
+
+    if (errors.length > 0) {
+      setToast({
+        tone: imported.length > 0 ? "info" : "error",
+        message: errors.slice(0, 2).join(" "),
+      });
+    } else if (warnings.length > 0) {
       setToast({ tone: "info", message: warnings.slice(0, 2).join(" ") });
+    } else if (imported.length === 0) {
+      setToast({
+        tone: "error",
+        message:
+          "No readable articles were found. Try a different export or paste article text.",
+      });
     }
     event.target.value = "";
   }
@@ -589,6 +620,15 @@ function App() {
                 <Sparkles size={17} aria-hidden="true" />
                 Build
               </button>
+              {buildMutation.isPending && (
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={() => abortRef.current?.abort()}
+                >
+                  Cancel
+                </button>
+              )}
               <button
                 type="button"
                 className="secondary"
@@ -629,6 +669,17 @@ function App() {
                     .join(" · ")}
                 </span>
               </div>
+            </div>
+          )}
+
+          {plan?.inputWarnings && plan.inputWarnings.length > 0 && (
+            <div className="warning-block" role="status">
+              <strong>Input warnings</strong>
+              <ul>
+                {plan.inputWarnings.slice(0, 5).map((warning) => (
+                  <li key={warning}>{warning}</li>
+                ))}
+              </ul>
             </div>
           )}
 
@@ -684,6 +735,34 @@ function App() {
         <span>{new Date(BUILT_AT).toLocaleString()}</span>
       </footer>
 
+      {debugEnabled && (
+        <section className="debug-panel" aria-label="Debug import state">
+          <h2>Debug</h2>
+          <pre>
+            {JSON.stringify(
+              {
+                articles: articles.map((article) => ({
+                  id: article.id,
+                  title: article.title,
+                  shape: article.importMeta?.shape,
+                  confidence: article.importMeta?.confidence,
+                  diagnostics: article.importMeta?.diagnostics,
+                })),
+                plan: plan
+                  ? {
+                      id: plan.id,
+                      lowConfidenceArticleIds: plan.lowConfidenceArticleIds,
+                      inputWarnings: plan.inputWarnings,
+                    }
+                  : null,
+              },
+              null,
+              2,
+            )}
+          </pre>
+        </section>
+      )}
+
       {toast && (
         <div className={`toast ${toast.tone}`} role="status">
           <span>{toast.message}</span>
@@ -732,6 +811,14 @@ function ArticleRow({
         <div className="article-meta">
           <span>{formatDuration(article.readingMinutes)}</span>
           <span>{article.wordCount} words</span>
+          {article.importMeta && (
+            <span
+              className={`confidence ${article.importMeta.confidence.label}`}
+            >
+              {article.importMeta.confidence.label} confidence
+            </span>
+          )}
+          {article.importMeta?.shape && <span>{article.importMeta.shape}</span>}
           {article.tags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}

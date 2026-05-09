@@ -1,5 +1,11 @@
 import type { Article, CurriculumPlan } from "../../shared/types";
-import { APP_NAME, REPOSITORY_URL } from "../../shared/constants";
+import {
+  APP_NAME,
+  APP_VERSION,
+  COMMIT_SHA,
+  REPOSITORY_URL,
+  SCHEMA_VERSION,
+} from "../../shared/constants";
 import { formatDateTime } from "../../shared/text";
 
 export function exportPlanJson(plan: CurriculumPlan, articles: Article[]) {
@@ -7,7 +13,16 @@ export function exportPlanJson(plan: CurriculumPlan, articles: Article[]) {
     {
       exportedAt: new Date().toISOString(),
       app: APP_NAME,
+      appVersion: APP_VERSION,
+      commit: COMMIT_SHA,
+      schemaVersion: SCHEMA_VERSION,
       repository: REPOSITORY_URL,
+      provenance: {
+        articleCount: articles.length,
+        lowConfidenceArticleIds: plan.lowConfidenceArticleIds,
+        inputWarnings: plan.inputWarnings,
+        parameters: plan.settings,
+      },
       articles,
       plan,
     },
@@ -24,6 +39,8 @@ export function exportPlanMarkdown(plan: CurriculumPlan, articles: Article[]) {
     `# ${APP_NAME}`,
     "",
     `Generated: ${plan.generatedAt}`,
+    `App version: ${APP_VERSION}`,
+    `Commit: ${COMMIT_SHA}`,
     `Articles: ${plan.articleCount}`,
     `Reading time: ${plan.totalReadingMinutes} minutes`,
     `Embedding provider: ${plan.embeddingProvider}`,
@@ -49,6 +66,14 @@ export function exportPlanMarkdown(plan: CurriculumPlan, articles: Article[]) {
       lines.push(
         `- ${article.title} (${article.readingMinutes}m)${article.sourceUrl ? ` - ${article.sourceUrl}` : ""}`,
       );
+    }
+    lines.push("");
+  }
+
+  if (plan.inputWarnings.length > 0) {
+    lines.push("## Input Warnings", "");
+    for (const warning of plan.inputWarnings) {
+      lines.push(`- ${warning}`);
     }
     lines.push("");
   }

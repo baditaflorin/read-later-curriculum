@@ -214,12 +214,16 @@ export async function buildCurriculum(
   articles: Article[],
   settings: UserSettings,
   onProgress?: ProgressCallback,
+  signal?: AbortSignal,
 ): Promise<CurriculumPlan> {
   const activeArticles = articles.filter(
     (article) => article.status !== "archived",
   );
   if (activeArticles.length === 0) {
     throw new Error("Add at least one article before building a curriculum.");
+  }
+  if (signal?.aborted) {
+    throw new Error("Build cancelled before it started.");
   }
 
   onProgress?.({
@@ -237,7 +241,12 @@ export async function buildCurriculum(
     texts,
     settings.embeddingMode,
     (progress) => onProgress?.({ phase: "embedding", ...progress }),
+    signal,
   );
+
+  if (signal?.aborted) {
+    throw new Error("Build cancelled before clustering.");
+  }
 
   onProgress?.({
     phase: "clustering",
@@ -251,6 +260,10 @@ export async function buildCurriculum(
     embedding.vectors,
     clusterCount,
   );
+
+  if (signal?.aborted) {
+    throw new Error("Build cancelled before ordering.");
+  }
 
   onProgress?.({
     phase: "ordering",
@@ -269,6 +282,10 @@ export async function buildCurriculum(
         .filter(Boolean) as Article[],
     ),
   );
+
+  if (signal?.aborted) {
+    throw new Error("Build cancelled before scheduling.");
+  }
 
   onProgress?.({
     phase: "scheduling",
@@ -303,6 +320,17 @@ export async function buildCurriculum(
     topics,
     sessions,
     orderedArticleIds: orderedArticles.map((article) => article.id),
+    lowConfidenceArticleIds: activeArticles
+      .filter((article) => (article.importMeta?.confidence.score ?? 1) < 0.55)
+      .map((article) => article.id)
+      .sort(),
+    inputWarnings: activeArticles
+      .flatMap((article) =>
+        (article.importMeta?.diagnostics ?? [])
+          .filter((item) => item.severity !== "info")
+          .map((item) => `${article.title}: ${item.what}`),
+      )
+      .sort(),
     settings,
   };
 }

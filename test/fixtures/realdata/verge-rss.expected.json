@@ -1,0 +1,11 @@
+{
+  "fixture": "verge-rss.xml",
+  "sourceUrl": "https://www.theverge.com/rss/index.xml",
+  "expectation": {
+    "status": "accepted",
+    "shape": "feed-xml",
+    "minArticleCount": 5,
+    "minConfidence": 0.75,
+    "maxErrorCount": 0
+  }
+}

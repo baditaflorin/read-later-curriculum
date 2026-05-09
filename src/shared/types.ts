@@ -7,6 +7,49 @@ export type ArticleStatus =
 
 export type EmbeddingMode = "fast" | "semantic";
 
+export type InputShape =
+  | "article-html"
+  | "technical-doc-html"
+  | "discussion-thread"
+  | "markdown"
+  | "markdown-resource-list"
+  | "read-later-csv"
+  | "feed-xml"
+  | "json-export"
+  | "plain-text"
+  | "partial-html"
+  | "empty"
+  | "unsupported-pdf"
+  | "unknown";
+
+export type DiagnosticSeverity = "info" | "warning" | "error";
+
+export interface ImportDiagnostic {
+  severity: DiagnosticSeverity;
+  code: string;
+  what: string;
+  why: string;
+  nowWhat: string;
+  field?: string;
+}
+
+export interface ImportConfidence {
+  score: number;
+  label: "low" | "medium" | "high";
+  reasons: string[];
+}
+
+export interface ImportMetadata {
+  shape: InputShape;
+  parser: string;
+  sourceFilename?: string;
+  sourceUrl?: string;
+  sourceIdentifier: string;
+  language?: string;
+  confidence: ImportConfidence;
+  diagnostics: ImportDiagnostic[];
+}
+
 export interface Article {
   id: string;
   title: string;
@@ -21,6 +64,7 @@ export interface Article {
   createdAt: string;
   updatedAt: string;
   completedAt?: string;
+  importMeta?: ImportMetadata;
 }
 
 export interface ArticleDraft {
@@ -29,6 +73,7 @@ export interface ArticleDraft {
   author?: string;
   content: string;
   tags?: string[];
+  importMeta?: ImportMetadata;
 }
 
 export interface FreeSlot {
@@ -79,6 +124,8 @@ export interface CurriculumPlan {
   topics: TopicCluster[];
   sessions: ReadingSession[];
   orderedArticleIds: string[];
+  lowConfidenceArticleIds: string[];
+  inputWarnings: string[];
   settings: UserSettings;
 }
 
@@ -98,5 +145,11 @@ export interface BuildProgress {
 
 export interface ImportResult {
   articles: ArticleDraft[];
+  status: "accepted" | "warned" | "rejected";
+  shape: InputShape;
+  confidence: ImportConfidence;
+  diagnostics: ImportDiagnostic[];
   warnings: string[];
+  errors: string[];
+  sourceIdentifier: string;
 }

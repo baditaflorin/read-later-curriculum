@@ -4,6 +4,7 @@ import {
   estimateReadingMinutes,
   makeExcerpt,
   normalizeWhitespace,
+  stableContentId,
   stableId,
 } from "../../shared/text";
 
@@ -23,6 +24,7 @@ export const articleDraftSchema = z.object({
     .trim()
     .min(40, "Article text must be at least 40 characters"),
   tags: z.array(z.string().trim().min(1)).default([]),
+  importMeta: z.custom<ArticleDraft["importMeta"]>().optional(),
 });
 
 export const articleSchema = articleDraftSchema.extend({
@@ -34,6 +36,7 @@ export const articleSchema = articleDraftSchema.extend({
   createdAt: z.string(),
   updatedAt: z.string(),
   completedAt: z.string().optional(),
+  importMeta: z.custom<Article["importMeta"]>().optional(),
 });
 
 export const exportedArticleSchema = articleSchema.partial({
@@ -49,15 +52,20 @@ export const exportedArticleSchema = articleSchema.partial({
 export function normalizeDraft(
   input: ArticleDraft,
   readingSpeedWpm: number,
+  options: { now?: string; idSeed?: string } = {},
 ): Article {
   const parsed = articleDraftSchema.parse(input);
-  const now = new Date().toISOString();
+  const now = options.now ?? new Date().toISOString();
   const content = normalizeWhitespace(parsed.content);
   const title = normalizeWhitespace(parsed.title);
   const tags = [...new Set(parsed.tags.map((tag) => tag.toLowerCase()))];
   const wordCount = content.split(/\s+/).filter(Boolean).length;
+  const idSeed =
+    options.idSeed ??
+    parsed.importMeta?.sourceIdentifier ??
+    `${parsed.sourceUrl ?? ""}\n${title}\n${content.slice(0, 2000)}`;
   return {
-    id: stableId("article"),
+    id: stableContentId("article", title, idSeed) || stableId("article"),
     title,
     sourceUrl: parsed.sourceUrl,
     author: parsed.author ? normalizeWhitespace(parsed.author) : undefined,
@@ -69,6 +77,7 @@ export function normalizeDraft(
     status: "saved",
     createdAt: now,
     updatedAt: now,
+    importMeta: parsed.importMeta,
   };
 }
 

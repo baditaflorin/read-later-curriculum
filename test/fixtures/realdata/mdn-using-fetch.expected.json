@@ -1,0 +1,12 @@
+{
+  "fixture": "mdn-using-fetch.html",
+  "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+  "expectation": {
+    "status": "warned",
+    "shape": "technical-doc-html",
+    "minArticleCount": 1,
+    "titleIncludes": ["Using the Fetch API"],
+    "minConfidence": 0.65,
+    "requiredWarnings": ["technical documentation"]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "fixture": "hackernews-dropbox-thread.html",
+  "sourceUrl": "https://news.ycombinator.com/item?id=8863",
+  "expectation": {
+    "status": "warned",
+    "shape": "discussion-thread",
+    "minArticleCount": 1,
+    "titleIncludes": ["Dropbox"],
+    "minConfidence": 0.35,
+    "maxConfidence": 0.7,
+    "requiredWarnings": ["discussion thread"]
+  }
+}
