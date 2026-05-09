@@ -369,7 +369,7 @@ function App() {
               <span className="sr-only">Import files</span>
               <input
                 type="file"
-                accept=".txt,.md,.markdown,.html,.htm,.json"
+                accept=".txt,.md,.markdown,.html,.htm,.csv,.xml,.rss,.atom,.json,.pdf"
                 multiple
                 onChange={handleFileImport}
               />
