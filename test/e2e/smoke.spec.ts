@@ -19,6 +19,6 @@ test("builds a local curriculum from the demo set", async ({ page }) => {
     timeout: 15_000,
   });
   await expect(page.getByText("Next")).toBeVisible();
-  await expect(page.locator("footer").getByText("v0.1.0")).toBeVisible();
+  await expect(page.locator("footer").getByText("v0.2.0")).toBeVisible();
   expect(consoleErrors).toEqual([]);
 });
