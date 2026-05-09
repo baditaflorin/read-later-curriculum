@@ -102,3 +102,40 @@ export function exportPlanMarkdown(plan: CurriculumPlan, articles: Article[]) {
   );
   return lines.join("\n");
 }
+
+export function exportPlanHtml(plan: CurriculumPlan, articles: Article[]) {
+  const markdown = exportPlanMarkdown(plan, articles)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>${APP_NAME} Print View</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 32px;
+        color: #171513;
+        background: #fffdf8;
+        font: 15px/1.6 "Iowan Old Style", "Palatino Linotype", serif;
+      }
+      h1 {
+        margin: 0 0 16px;
+        font-size: 30px;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        font: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>${APP_NAME}</h1>
+    <pre>${markdown}</pre>
+  </body>
+</html>`;
+}

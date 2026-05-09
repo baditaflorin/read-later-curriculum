@@ -90,6 +90,20 @@ export interface UserSettings {
   freeSlots: FreeSlot[];
 }
 
+export interface ManualDraftState {
+  title: string;
+  sourceUrl: string;
+  tags: string;
+  content: string;
+}
+
+export interface UiState {
+  query: string;
+  pastedContent: string;
+  pastedFilename: string;
+  manualDraft: ManualDraftState;
+}
+
 export interface TopicCluster {
   id: string;
   label: string;
@@ -152,4 +166,17 @@ export interface ImportResult {
   warnings: string[];
   errors: string[];
   sourceIdentifier: string;
+}
+
+export interface AppStateExport {
+  kind: "read-later-curriculum-state";
+  schemaVersion: "v1";
+  exportedAt: string;
+  appVersion: string;
+  commit: string;
+  repository: string;
+  settings: UserSettings;
+  uiState: UiState;
+  articles: Article[];
+  plan: CurriculumPlan | null;
 }

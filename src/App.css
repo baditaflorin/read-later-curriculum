@@ -125,6 +125,12 @@ label span,
   gap: 12px;
 }
 
+.import-helpers {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
 label {
   display: grid;
   gap: 6px;
@@ -156,6 +162,10 @@ textarea {
   resize: vertical;
   padding: 10px;
   line-height: 1.45;
+}
+
+.paste-box {
+  min-height: 130px;
 }
 
 input:focus,
@@ -218,6 +228,36 @@ button:disabled {
 
 .danger {
   color: var(--danger);
+}
+
+.drop-target {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface);
+}
+
+.drop-target strong {
+  font-size: 14px;
+}
+
+.drop-target span,
+.helper-text {
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.helper-text {
+  margin: 0;
+}
+
+.import-panel.is-dragging .drop-target {
+  border-color: var(--focus);
+  background: var(--focus-soft);
 }
 
 .search-field {

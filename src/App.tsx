@@ -1,21 +1,26 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Archive,
   BookOpenCheck,
   CalendarClock,
   Check,
+  Clipboard,
   Database,
   Download,
   FileJson,
   Heart,
   Import,
   Library,
+  Link2,
   Plus,
+  Printer,
+  RotateCcw,
   Search,
   Sparkles,
   Star,
   Trash2,
+  Upload,
 } from "lucide-react";
 import "./App.css";
 import {
@@ -23,41 +28,67 @@ import {
   APP_VERSION,
   BUILT_AT,
   COMMIT_SHA,
+  DEFAULT_MANUAL_DRAFT,
   DEFAULT_SETTINGS,
+  DEFAULT_UI_STATE,
   LIVE_URL,
   PAYPAL_URL,
   REPOSITORY_URL,
   WEEKDAYS,
 } from "./shared/constants";
 import type {
+  AppStateExport,
   Article,
   BuildProgress,
   FreeSlot,
+  ManualDraftState,
+  UiState,
   UserSettings,
 } from "./shared/types";
-import { downloadFile, formatDateTime, formatDuration } from "./shared/text";
 import {
-  draftFromManualInput,
-  parseImportFile,
-} from "./features/articles/importers";
-import { normalizeDraft } from "./features/articles/articleSchema";
+  copyText,
+  downloadFile,
+  formatDateTime,
+  formatDuration,
+} from "./shared/text";
+import { draftFromManualInput } from "./features/articles/importers";
 import {
-  clearArticles,
+  importArticleFiles,
+  importArticleText,
+} from "./features/articles/importWorkflow";
+import {
+  exportedArticleSchema,
+  normalizeDraft,
+  reviveArticle,
+} from "./features/articles/articleSchema";
+import {
+  clearAllData,
   deleteArticle,
   getLatestPlan,
   getSettings,
+  getUiState,
   listArticles,
+  replaceAllData,
   saveArticles,
   savePlan,
   saveSettings,
+  saveUiState,
   updateArticle,
 } from "./features/storage/db";
+import {
+  createAppStateExport,
+  decodeAppStateShare,
+  encodeAppStateShare,
+  parseAppStateJson,
+  serializeAppState,
+} from "./features/storage/appState";
 import { searchArticles } from "./features/search/searchEngine";
 import {
   buildCurriculum,
   previewNextReading,
 } from "./features/curriculum/buildCurriculum";
 import {
+  exportPlanHtml,
   exportPlanJson,
   exportPlanMarkdown,
 } from "./features/curriculum/exporters";
@@ -70,6 +101,7 @@ interface Toast {
 const articleQueryKey = ["articles"];
 const planQueryKey = ["plan"];
 const settingsQueryKey = ["settings"];
+const uiStateQueryKey = ["ui-state"];
 const emptyArticles: Article[] = [];
 
 function showError(error: unknown) {
@@ -80,21 +112,101 @@ function slotLabel(slot: FreeSlot) {
   return `${WEEKDAYS[slot.weekday]} ${slot.startTime} · ${slot.minutes}m`;
 }
 
+function describeImportSummary(summary: {
+  importedArticles: Article[];
+  importedFileCount: number;
+  acceptedCount: number;
+  warnedCount: number;
+  rejectedCount: number;
+  warnings: string[];
+  errors: string[];
+}) {
+  const parts: string[] = [];
+  if (summary.importedArticles.length > 0) {
+    parts.push(
+      `Saved ${summary.importedArticles.length} article${summary.importedArticles.length === 1 ? "" : "s"} from ${summary.importedFileCount} input${summary.importedFileCount === 1 ? "" : "s"}.`,
+    );
+  }
+  if (summary.warnedCount > 0) {
+    parts.push(
+      `${summary.warnedCount} import${summary.warnedCount === 1 ? " was" : "s were"} saved with warnings.`,
+    );
+  }
+  if (summary.rejectedCount > 0) {
+    parts.push(
+      `${summary.rejectedCount} import${summary.rejectedCount === 1 ? " was" : "s were"} rejected.`,
+    );
+  }
+  if (summary.errors.length > 0) {
+    parts.push(summary.errors[0]);
+  } else if (summary.warnings.length > 0) {
+    parts.push(summary.warnings[0]);
+  }
+  return parts.join(" ");
+}
+
+function inferFilename(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return "pasted-article.txt";
+  }
+  if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+    return "pasted-export.json";
+  }
+  if (
+    trimmed.startsWith("<?xml") ||
+    trimmed.includes("<rss") ||
+    trimmed.includes("<feed")
+  ) {
+    return "pasted-feed.xml";
+  }
+  if (trimmed.startsWith("<") && trimmed.includes("</")) {
+    return "pasted-article.html";
+  }
+  if (trimmed.startsWith("#")) {
+    return "pasted-article.md";
+  }
+  if (trimmed.includes(",") && trimmed.toLowerCase().includes("title")) {
+    return "pasted-links.csv";
+  }
+  return "pasted-article.txt";
+}
+
+function sanitizeStateForShare(state: AppStateExport) {
+  return createAppStateExport({
+    articles: state.articles,
+    plan: state.plan,
+    settings: state.settings,
+    uiState: {
+      ...state.uiState,
+      manualDraft: DEFAULT_MANUAL_DRAFT,
+      pastedContent: "",
+    },
+  });
+}
+
 function App() {
   const queryClient = useQueryClient();
   const [toast, setToast] = useState<Toast | null>(null);
   const [query, setQuery] = useState("");
-  const [title, setTitle] = useState("");
-  const [sourceUrl, setSourceUrl] = useState("");
-  const [tags, setTags] = useState("");
-  const [content, setContent] = useState("");
-  const abortRef = useRef<AbortController | null>(null);
+  const [manualDraft, setManualDraft] =
+    useState<ManualDraftState>(DEFAULT_MANUAL_DRAFT);
+  const [pastedContent, setPastedContent] = useState("");
+  const [pastedFilename, setPastedFilename] = useState(
+    DEFAULT_UI_STATE.pastedFilename,
+  );
+  const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState<BuildProgress>({
     phase: "idle",
     detail: "",
     completed: 0,
     total: 0,
   });
+  const abortRef = useRef<AbortController | null>(null);
+  const uiHydratedRef = useRef(false);
+  const shareHandledRef = useRef(false);
+  const stateFileInputRef = useRef<HTMLInputElement | null>(null);
+  const articleFileInputRef = useRef<HTMLInputElement | null>(null);
 
   const articlesQuery = useQuery({
     queryKey: articleQueryKey,
@@ -107,6 +219,10 @@ function App() {
   const settingsQuery = useQuery({
     queryKey: settingsQueryKey,
     queryFn: getSettings,
+  });
+  const uiStateQuery = useQuery({
+    queryKey: uiStateQueryKey,
+    queryFn: getUiState,
   });
 
   const articles = articlesQuery.data ?? emptyArticles;
@@ -174,54 +290,163 @@ function App() {
     onError: (error) => setToast({ tone: "error", message: showError(error) }),
   });
 
+  function applyUiState(uiState: UiState) {
+    setQuery(uiState.query);
+    setPastedContent(uiState.pastedContent);
+    setPastedFilename(uiState.pastedFilename);
+    setManualDraft(uiState.manualDraft);
+  }
+
+  function currentUiState(): UiState {
+    return {
+      query,
+      pastedContent,
+      pastedFilename,
+      manualDraft,
+    };
+  }
+
+  function currentAppState(): AppStateExport {
+    return createAppStateExport({
+      settings,
+      uiState: currentUiState(),
+      articles,
+      plan,
+    });
+  }
+
+  useEffect(() => {
+    if (uiHydratedRef.current || !uiStateQuery.data) {
+      return;
+    }
+    uiHydratedRef.current = true;
+    applyUiState(uiStateQuery.data);
+  }, [uiStateQuery.data]);
+
+  useEffect(() => {
+    if (!uiHydratedRef.current) {
+      return;
+    }
+    void saveUiState({
+      query,
+      pastedContent,
+      pastedFilename,
+      manualDraft,
+    });
+  }, [manualDraft, pastedContent, pastedFilename, query]);
+
+  useEffect(() => {
+    if (shareHandledRef.current || settingsQuery.isPending) {
+      return;
+    }
+    shareHandledRef.current = true;
+    const hash = window.location.hash.startsWith("#")
+      ? window.location.hash.slice(1)
+      : "";
+    const params = new URLSearchParams(hash);
+    const encoded = params.get("state");
+    if (!encoded) {
+      return;
+    }
+
+    const hydrateFromShare = async () => {
+      try {
+        const restored = decodeAppStateShare(encoded, settings.readingSpeedWpm);
+        await replaceAllData(restored);
+        applyUiState(restored.uiState);
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: articleQueryKey }),
+          queryClient.invalidateQueries({ queryKey: planQueryKey }),
+          queryClient.invalidateQueries({ queryKey: settingsQueryKey }),
+          queryClient.invalidateQueries({ queryKey: uiStateQueryKey }),
+        ]);
+        window.history.replaceState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}`,
+        );
+        setToast({
+          tone: "success",
+          message: "Shared workspace loaded from the URL.",
+        });
+      } catch (error) {
+        setToast({ tone: "error", message: showError(error) });
+      }
+    };
+
+    void hydrateFromShare();
+  }, [queryClient, settings.readingSpeedWpm, settingsQuery.isPending]);
+
+  async function saveImportedArticles(summary: {
+    importedArticles: Article[];
+    importedFileCount: number;
+    acceptedCount: number;
+    warnedCount: number;
+    rejectedCount: number;
+    warnings: string[];
+    errors: string[];
+  }) {
+    if (summary.importedArticles.length > 0) {
+      await saveArticlesMutation.mutateAsync(summary.importedArticles);
+    }
+    const message = describeImportSummary(summary);
+    setToast({
+      tone:
+        summary.errors.length > 0 && summary.importedArticles.length === 0
+          ? "error"
+          : summary.errors.length > 0 || summary.warnings.length > 0
+            ? "info"
+            : "success",
+      message:
+        message ||
+        "No readable articles were found. Try a different export or paste cleaner text.",
+    });
+  }
+
+  async function handleArticleFiles(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+    const summary = await importArticleFiles(files, settings.readingSpeedWpm);
+    await saveImportedArticles(summary);
+  }
+
   async function handleAddArticle(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const draft = draftFromManualInput({ title, sourceUrl, tags, content });
+    const draft = draftFromManualInput(manualDraft);
     const article = normalizeDraft(draft, settings.readingSpeedWpm);
     await saveArticlesMutation.mutateAsync([article]);
-    setTitle("");
-    setSourceUrl("");
-    setTags("");
-    setContent("");
+    setManualDraft(DEFAULT_MANUAL_DRAFT);
   }
 
   async function handleFileImport(event: React.ChangeEvent<HTMLInputElement>) {
     const files = [...(event.target.files ?? [])];
-    if (files.length === 0) {
+    await handleArticleFiles(files);
+    event.target.value = "";
+  }
+
+  async function handleStateImport(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) {
       return;
     }
-
-    const imported: Article[] = [];
-    const warnings: string[] = [];
-    const errors: string[] = [];
-    for (const file of files) {
-      const result = await parseImportFile(file);
-      warnings.push(...result.warnings);
-      errors.push(...result.errors);
-      imported.push(
-        ...result.articles.map((draft) =>
-          normalizeDraft(draft, settings.readingSpeedWpm),
-        ),
-      );
-    }
-
-    if (imported.length > 0) {
-      await saveArticlesMutation.mutateAsync(imported);
-    }
-
-    if (errors.length > 0) {
+    try {
+      const json = await file.text();
+      const restored = parseAppStateJson(json, settings.readingSpeedWpm);
+      await replaceAllData(restored);
+      applyUiState(restored.uiState);
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: articleQueryKey }),
+        queryClient.invalidateQueries({ queryKey: planQueryKey }),
+        queryClient.invalidateQueries({ queryKey: settingsQueryKey }),
+        queryClient.invalidateQueries({ queryKey: uiStateQueryKey }),
+      ]);
       setToast({
-        tone: imported.length > 0 ? "info" : "error",
-        message: errors.slice(0, 2).join(" "),
+        tone: "success",
+        message: "Workspace restored from state export.",
       });
-    } else if (warnings.length > 0) {
-      setToast({ tone: "info", message: warnings.slice(0, 2).join(" ") });
-    } else if (imported.length === 0) {
-      setToast({
-        tone: "error",
-        message:
-          "No readable articles were found. Try a different export or paste article text.",
-      });
+    } catch (error) {
+      setToast({ tone: "error", message: showError(error) });
     }
     event.target.value = "";
   }
@@ -233,17 +458,72 @@ function App() {
     if (!response.ok) {
       throw new Error("Sample articles are missing. Run make data.");
     }
-    const raw = (await response.json()) as Array<{
-      title: string;
-      sourceUrl?: string;
-      author?: string;
-      content: string;
-      tags?: string[];
-    }>;
+    const raw = exportedArticleSchema
+      .array()
+      .parse((await response.json()) as unknown);
     const imported = raw.map((draft) =>
-      normalizeDraft(draft, settings.readingSpeedWpm),
+      reviveArticle(draft, settings.readingSpeedWpm),
     );
     await saveArticlesMutation.mutateAsync(imported);
+  }
+
+  async function handleImportPastedContent() {
+    if (!pastedContent.trim()) {
+      setToast({
+        tone: "error",
+        message:
+          "Paste some article content, HTML, JSON, CSV, or feed XML first.",
+      });
+      return;
+    }
+    const filename = pastedFilename.trim() || inferFilename(pastedContent);
+    const summary = importArticleText(
+      pastedContent,
+      filename,
+      settings.readingSpeedWpm,
+    );
+    await saveImportedArticles(summary);
+    setPastedContent("");
+    setPastedFilename(inferFilename(""));
+  }
+
+  async function handleReadClipboard() {
+    try {
+      let payload = "";
+      if ("read" in navigator.clipboard) {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+          if (item.types.includes("text/html")) {
+            payload = await (await item.getType("text/html")).text();
+            setPastedFilename("clipboard.html");
+            break;
+          }
+          if (item.types.includes("text/plain")) {
+            payload = await (await item.getType("text/plain")).text();
+          }
+        }
+      }
+      if (!payload) {
+        payload = await navigator.clipboard.readText();
+      }
+      if (!payload.trim()) {
+        throw new Error("Clipboard is empty.");
+      }
+      setPastedContent(payload);
+      setPastedFilename(inferFilename(payload));
+      setToast({
+        tone: "success",
+        message: "Clipboard content loaded into the paste importer.",
+      });
+    } catch (error) {
+      setToast({
+        tone: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Clipboard access failed. Paste into the box instead.",
+      });
+    }
   }
 
   function patchSettings(patch: Partial<UserSettings>) {
@@ -278,11 +558,25 @@ function App() {
     setToast({ tone: "success", message: "Article removed." });
   }
 
-  async function handleClear() {
-    await clearArticles();
-    await queryClient.invalidateQueries({ queryKey: articleQueryKey });
-    await queryClient.invalidateQueries({ queryKey: planQueryKey });
-    setToast({ tone: "success", message: "Local library cleared." });
+  async function handleStartFresh() {
+    await clearAllData();
+    applyUiState(DEFAULT_UI_STATE);
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: articleQueryKey }),
+      queryClient.invalidateQueries({ queryKey: planQueryKey }),
+      queryClient.invalidateQueries({ queryKey: settingsQueryKey }),
+      queryClient.invalidateQueries({ queryKey: uiStateQueryKey }),
+    ]);
+    setToast({
+      tone: "success",
+      message:
+        "Workspace reset. Library, plan, settings, and draft state were cleared.",
+    });
   }
 
   function exportMarkdown() {
@@ -297,16 +591,80 @@ function App() {
     );
   }
 
-  function exportJson() {
+  function exportPlanData() {
     if (!plan) {
       setToast({ tone: "error", message: "Build a curriculum first." });
       return;
     }
     downloadFile(
-      "read-later-curriculum-v1.json",
+      "read-later-plan-v1.json",
       exportPlanJson(plan, articles),
       "application/json",
     );
+  }
+
+  function exportStateData() {
+    downloadFile(
+      "read-later-workspace-v1.json",
+      serializeAppState(currentAppState()),
+      "application/json",
+    );
+  }
+
+  async function copyMarkdownOutput() {
+    if (!plan) {
+      setToast({ tone: "error", message: "Build a curriculum first." });
+      return;
+    }
+    await copyText(exportPlanMarkdown(plan, articles));
+    setToast({ tone: "success", message: "Curriculum Markdown copied." });
+  }
+
+  async function copyStateOutput() {
+    await copyText(serializeAppState(currentAppState()));
+    setToast({ tone: "success", message: "Workspace JSON copied." });
+  }
+
+  async function shareWorkspace() {
+    const sharable = sanitizeStateForShare(currentAppState());
+    const encoded = encodeAppStateShare(sharable);
+    const url = `${LIVE_URL}#state=${encoded}`;
+    if (url.length > 3500) {
+      setToast({
+        tone: "error",
+        message:
+          "This workspace is too large for a share URL. Export the state JSON instead.",
+      });
+      return;
+    }
+    await copyText(url);
+    setToast({ tone: "success", message: "Share URL copied." });
+  }
+
+  function printPlan() {
+    if (!plan) {
+      setToast({ tone: "error", message: "Build a curriculum first." });
+      return;
+    }
+    const popup = window.open("", "_blank", "noopener,noreferrer");
+    if (!popup) {
+      setToast({
+        tone: "error",
+        message: "Pop-up blocked. Allow pop-ups to print the plan.",
+      });
+      return;
+    }
+    popup.document.write(exportPlanHtml(plan, articles));
+    popup.document.close();
+    popup.focus();
+    popup.print();
+  }
+
+  function updateDraftField<K extends keyof ManualDraftState>(
+    key: K,
+    value: ManualDraftState[K],
+  ) {
+    setManualDraft((current) => ({ ...current, [key]: value }));
   }
 
   return (
@@ -358,30 +716,124 @@ function App() {
       </section>
 
       <div className="workspace-grid">
-        <section className="panel import-panel" aria-labelledby="add-article">
+        <section
+          className={`panel import-panel ${isDragging ? "is-dragging" : ""}`}
+          aria-labelledby="add-article"
+          onDragOver={(event) => {
+            event.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={(event) => {
+            event.preventDefault();
+            if (
+              event.currentTarget.contains(event.relatedTarget as Node | null)
+            ) {
+              return;
+            }
+            setIsDragging(false);
+          }}
+          onDrop={(event) => {
+            event.preventDefault();
+            setIsDragging(false);
+            const files = [...event.dataTransfer.files];
+            void handleArticleFiles(files);
+          }}
+        >
           <div className="panel-heading">
             <div>
               <p className="eyebrow">Inbox</p>
               <h2 id="add-article">Add Reading</h2>
             </div>
-            <label className="icon-button" title="Import files">
-              <Import size={18} aria-hidden="true" />
-              <span className="sr-only">Import files</span>
+            <div className="button-row compact">
+              <label className="icon-button" title="Import article files">
+                <Import size={18} aria-hidden="true" />
+                <span className="sr-only">Import article files</span>
+                <input
+                  ref={articleFileInputRef}
+                  type="file"
+                  accept=".txt,.md,.markdown,.html,.htm,.csv,.xml,.rss,.atom,.json,.pdf"
+                  multiple
+                  onChange={handleFileImport}
+                />
+              </label>
+              <label className="icon-button" title="Import workspace state">
+                <Upload size={18} aria-hidden="true" />
+                <span className="sr-only">Import workspace state</span>
+                <input
+                  ref={stateFileInputRef}
+                  type="file"
+                  accept=".json"
+                  onChange={handleStateImport}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="drop-target">
+            <strong>Drop article exports here</strong>
+            <span>
+              Files, drag-drop, paste, clipboard, and full-state restore all
+              work locally.
+            </span>
+          </div>
+
+          <div className="import-helpers">
+            <div className="button-row">
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void handleReadClipboard()}
+              >
+                <Clipboard size={17} aria-hidden="true" />
+                Read Clipboard
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void handleImportPastedContent()}
+              >
+                <Plus size={17} aria-hidden="true" />
+                Import Paste
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void handleLoadSample()}
+              >
+                <Database size={17} aria-hidden="true" />
+                Demo Set
+              </button>
+            </div>
+            <label>
+              <span>Pasted content filename hint</span>
               <input
-                type="file"
-                accept=".txt,.md,.markdown,.html,.htm,.csv,.xml,.rss,.atom,.json,.pdf"
-                multiple
-                onChange={handleFileImport}
+                value={pastedFilename}
+                onChange={(event) => setPastedFilename(event.target.value)}
+                placeholder="pasted-article.html"
               />
             </label>
+            <label>
+              <span>Paste article text, HTML, CSV, RSS/XML, or JSON</span>
+              <textarea
+                value={pastedContent}
+                onChange={(event) => setPastedContent(event.target.value)}
+                className="paste-box"
+              />
+            </label>
+            <p className="helper-text">
+              Direct URL import stays out of scope in this static build. Paste
+              the rendered article or import an exported file instead.
+            </p>
           </div>
 
           <form className="article-form" onSubmit={handleAddArticle}>
             <label>
               <span>Title</span>
               <input
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                value={manualDraft.title}
+                onChange={(event) =>
+                  updateDraftField("title", event.target.value)
+                }
                 required
               />
             </label>
@@ -389,23 +841,29 @@ function App() {
               <span>URL</span>
               <input
                 type="url"
-                value={sourceUrl}
-                onChange={(event) => setSourceUrl(event.target.value)}
+                value={manualDraft.sourceUrl}
+                onChange={(event) =>
+                  updateDraftField("sourceUrl", event.target.value)
+                }
               />
             </label>
             <label>
               <span>Tags</span>
               <input
-                value={tags}
-                onChange={(event) => setTags(event.target.value)}
+                value={manualDraft.tags}
+                onChange={(event) =>
+                  updateDraftField("tags", event.target.value)
+                }
                 placeholder="ai, systems, research"
               />
             </label>
             <label>
               <span>Article text</span>
               <textarea
-                value={content}
-                onChange={(event) => setContent(event.target.value)}
+                value={manualDraft.content}
+                onChange={(event) =>
+                  updateDraftField("content", event.target.value)
+                }
                 required
                 minLength={40}
               />
@@ -414,14 +872,6 @@ function App() {
               <button type="submit" disabled={saveArticlesMutation.isPending}>
                 <Plus size={17} aria-hidden="true" />
                 Add
-              </button>
-              <button
-                type="button"
-                className="secondary"
-                onClick={handleLoadSample}
-              >
-                <Database size={17} aria-hidden="true" />
-                Demo Set
               </button>
             </div>
           </form>
@@ -439,11 +889,11 @@ function App() {
             <button
               type="button"
               className="icon-button danger"
-              title="Clear local library"
-              onClick={handleClear}
+              title="Start fresh"
+              onClick={() => void handleStartFresh()}
             >
-              <Trash2 size={18} aria-hidden="true" />
-              <span className="sr-only">Clear local library</span>
+              <RotateCcw size={18} aria-hidden="true" />
+              <span className="sr-only">Start fresh</span>
             </button>
           </div>
           <label className="search-field">
@@ -538,12 +988,12 @@ function App() {
               <span>Embeddings</span>
               <select
                 value={settings.embeddingMode}
-                onChange={(event) =>
-                  patchSettings({
-                    embeddingMode: event.target
-                      .value as UserSettings["embeddingMode"],
-                  })
-                }
+                onChange={(event) => {
+                  const nextMode = event.target.value;
+                  if (nextMode === "fast" || nextMode === "semantic") {
+                    patchSettings({ embeddingMode: nextMode });
+                  }
+                }}
               >
                 <option value="fast">Fast local</option>
                 <option value="semantic">Sentence-transformers</option>
@@ -635,11 +1085,51 @@ function App() {
                 onClick={exportMarkdown}
               >
                 <Download size={17} aria-hidden="true" />
-                MD
+                Markdown
               </button>
-              <button type="button" className="secondary" onClick={exportJson}>
+              <button
+                type="button"
+                className="secondary"
+                onClick={exportPlanData}
+              >
                 <FileJson size={17} aria-hidden="true" />
-                JSON
+                Plan JSON
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={exportStateData}
+              >
+                <Database size={17} aria-hidden="true" />
+                State JSON
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void copyMarkdownOutput()}
+              >
+                <Clipboard size={17} aria-hidden="true" />
+                Copy MD
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void copyStateOutput()}
+              >
+                <Clipboard size={17} aria-hidden="true" />
+                Copy State
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => void shareWorkspace()}
+              >
+                <Link2 size={17} aria-hidden="true" />
+                Share URL
+              </button>
+              <button type="button" className="secondary" onClick={printPlan}>
+                <Printer size={17} aria-hidden="true" />
+                Print
               </button>
             </div>
           </div>
@@ -741,6 +1231,7 @@ function App() {
           <pre>
             {JSON.stringify(
               {
+                uiState: currentUiState(),
                 articles: articles.map((article) => ({
                   id: article.id,
                   title: article.title,
