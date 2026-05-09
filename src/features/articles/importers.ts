@@ -307,6 +307,14 @@ export function parseHtml(
   filename = "article.html",
 ): ArticleDraft {
   const document = new DOMParser().parseFromString(html, "text/html");
+  return parseHtmlDocument(document, html, filename);
+}
+
+function parseHtmlDocument(
+  document: Document,
+  html: string,
+  filename: string,
+): ArticleDraft {
   const parsed = new Readability(document).parse();
   const title =
     parsed?.title ||
@@ -404,7 +412,7 @@ function parseHtmlInput(context: ParseContext): ParserOutput {
         content: bodyText,
         tags: ["discussion", "thread"],
       })
-    : parseHtml(context.text, context.filename);
+    : parseHtmlDocument(document, context.text, context.filename);
   const output = {
     articles: [draft],
     shape,
