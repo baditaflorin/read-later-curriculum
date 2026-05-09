@@ -6,7 +6,7 @@ Repository: https://github.com/baditaflorin/read-later-curriculum
 
 Support: https://www.paypal.com/paypalme/florinbadita
 
-![Version](https://img.shields.io/badge/version-0.1.0-126b6f)
+![Version](https://img.shields.io/badge/version-0.2.0-126b6f)
 ![Deployment](https://img.shields.io/badge/deployment-GitHub%20Pages-7a3f98)
 ![License](https://img.shields.io/badge/license-MIT-171513)
 
@@ -28,16 +28,20 @@ make smoke
 
 ## What Works
 
-- Add pasted article text or import `.txt`, `.md`, `.html`, and compatible
-  `.json` exports.
+- Add pasted article text or import `.txt`, `.md`, `.html`, read-later `.csv`,
+  RSS/Atom `.xml`, and compatible `.json` exports.
+- Detect common real-world input shapes, show confidence/warnings, and reject
+  unsupported PDFs or empty files with actionable recovery text.
 - Store articles, reading state, settings, and generated plans in IndexedDB.
 - Search locally with FlexSearch.
 - Build topic clusters with fast local embeddings or lazy browser
   sentence-transformers.
 - Dependency-order topics, mix short and long reads, and schedule sessions into
   free-time slots.
-- Export curriculum JSON and Pandoc-ready Markdown.
+- Export curriculum JSON and Pandoc-ready Markdown with provenance, version,
+  commit, confidence, and parser metadata.
 - Show live version and commit in the GitHub Pages UI.
+- Inspect import decisions with `?debug=1`.
 
 ## Architecture
 

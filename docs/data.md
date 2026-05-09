@@ -29,6 +29,31 @@ interface Article {
   createdAt: string;
   updatedAt: string;
   completedAt?: string;
+  importMeta?: ImportMetadata;
+}
+
+interface ImportMetadata {
+  shape:
+    | "article-html"
+    | "technical-doc-html"
+    | "discussion-thread"
+    | "markdown"
+    | "markdown-resource-list"
+    | "read-later-csv"
+    | "feed-xml"
+    | "json-export"
+    | "plain-text"
+    | "partial-html"
+    | "empty"
+    | "unsupported-pdf"
+    | "unknown";
+  parser: string;
+  sourceFilename?: string;
+  sourceUrl?: string;
+  sourceIdentifier: string;
+  language?: string;
+  confidence: ImportConfidence;
+  diagnostics: ImportDiagnostic[];
 }
 ```
 
@@ -49,8 +74,25 @@ interface CurriculumPlan {
   sessions: ReadingSession[];
   orderedArticleIds: string[];
   settings: UserSettings;
+  lowConfidenceArticleIds: string[];
+  inputWarnings: string[];
 }
 ```
+
+## User Export Provenance
+
+JSON and Markdown exports include:
+
+- app name
+- app version
+- commit
+- schema version
+- repository URL
+- source identifiers
+- parser names
+- import shapes
+- confidence labels/scores/reasons
+- diagnostics and plan warnings
 
 ## Freshness
 

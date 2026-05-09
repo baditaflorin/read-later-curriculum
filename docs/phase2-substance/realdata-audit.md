@@ -102,3 +102,40 @@ as input #9.
 - No paid/cloud LLM integration or frontend secrets.
 - No full PDF feature unless the chosen substance plan explicitly treats PDF as
   an unsupported input with excellent recovery messaging.
+
+## Implementation Pass - 2026-05-09
+
+Command set:
+
+```sh
+npm run test-integration
+npm run lint
+npm test
+npm run build
+node scripts/check-pages-build.mjs
+npm run smoke
+npm audit --omit=dev
+```
+
+| #   | Input                                     | v0.2 behavior                                                                                         | Outcome                         |
+| --- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------- |
+| 1   | Wikipedia, Information retrieval          | Detects `article-html`, imports one article, keeps source/provenance/confidence metadata.             | Useful without correction.      |
+| 2   | MDN, Using the Fetch API                  | Detects `technical-doc-html`, imports one article with a visible warning about flattened code/docs.   | Useful with honest warning.     |
+| 3   | GitHub `awesome` README                   | Detects `markdown-resource-list`, keeps the README title, marks medium confidence.                    | Useful with honest warning.     |
+| 4   | Hacker News Dropbox launch thread         | Detects `discussion-thread`, imports one thread-shaped reading with a scheduling warning.             | Useful with honest warning.     |
+| 5   | Pocket CSV export shape                   | Detects `read-later-csv`, creates one article per row, normalizes tags and URLs.                      | Useful without correction.      |
+| 6   | The Verge RSS feed                        | Detects `feed-xml`, creates feed-entry articles with source URLs and parser metadata.                 | Useful without correction.      |
+| 7   | arXiv Attention Is All You Need PDF       | Detects `unsupported-pdf`, rejects import with what/why/now-what recovery text.                       | Actionably rejected.            |
+| 8   | Arabic Wikipedia, Artificial intelligence | Detects `article-html`, preserves Arabic language metadata, imports one article.                      | Useful without correction.      |
+| 9   | Empty text file                           | Detects `empty`, rejects import with a visible in-app next step.                                      | Actionably rejected.            |
+| 10  | Truncated HTML clip                       | Detects `partial-html`, imports the clip with low confidence and a warning to replace with full text. | Useful with honest warning.     |
+
+Pass-rate trend:
+
+- Baseline: 4/10 useful, 5/10 wrong-confident, 1/10 hidden failure.
+- v0.2: 8/10 useful enough to continue into preview/build, 10/10 either useful
+  or actionably rejected, 0/10 wrong-confident.
+- Determinism: 10/10 fixtures pass byte-identical normalized import output on
+  repeated runs.
+- Performance: median fixture import 6.29 ms, p95 3920.69 ms, worst 3920.69 ms
+  on the measured local run.
