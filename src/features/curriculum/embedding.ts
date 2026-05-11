@@ -156,11 +156,24 @@ export async function embedTexts(
     }
 
     return { vectors, provider: "sentence-transformers" };
-  } catch {
+  } catch (error) {
+    // A bare catch used to swallow everything here, including the
+    // AbortError raised by the signal checks above — so cancelling a build
+    // mid-embedding would silently fall back to hash embeddings and produce
+    // a curriculum the user didn't ask for. Re-throw abort cleanly.
+    if (signal?.aborted) {
+      throw error instanceof Error
+        ? error
+        : new Error("Build cancelled while embedding articles.");
+    }
+    const reason =
+      error instanceof Error
+        ? error.message
+        : "unknown sentence-transformers error";
     onProgress?.({
       completed: texts.length,
       total: texts.length,
-      detail: "Semantic model unavailable; using local fallback embeddings",
+      detail: `Semantic model unavailable (${reason}); using local fallback embeddings`,
     });
     return {
       vectors: hashEmbeddings(texts),
